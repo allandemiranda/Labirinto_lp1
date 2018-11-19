@@ -1,0 +1,48 @@
+indices:
+
+*comandos = ffmpeg
+*pcg área de jogos =
+*celulas:
+	tem = quatro paredes;
+	tipos =	livre, saida, entrada, caminho, caminho descartado;
+
+imagem: 
+	criar classe canvas só para desenho:
+		metodos = clear, set_pen_color, hline, vline, hBox, unsigned char * get_pixels, c.width, c.height, 
+		funcoes = hLine(x,y,w), vLine(x,y,h), box(x,y,w,h)
+	formula para localização de celulas = (500 - 40) / 10 = (tam - margens) / (tam da linha em quadrados)
+
+	width = 500;
+	height = 300;
+	pixel x = 120, y = 58;
+	vetor de pixels: unsigned char *pixel = new unsigned char [ width * height * 3 ]
+	size_t offset pixel = (y* width * 3) + 3*x;
+
+criando imagem:
+
+	struct Color{
+		typedef unsigned char byte;
+		byte channel[3];
+		Color( byte r=0, byte g=0, byte b=0 ) : channel{r,g,b} {empty}
+	};
+		
+static Color White(255,255,255);
+static Color RED(255,0,0);
+
+int main()
+{
+	Canvas c(500, 300);
+	c.clear( WHITE ); // limpar a imagem com uma cor especifica
+	c.set_pen_color( RED );
+	
+}
+							   						
+*planejamento
+*versões incrementais
+*boa documentação
+*game loop
+*streams
+*estruturas de dados
+*testes
+
+
