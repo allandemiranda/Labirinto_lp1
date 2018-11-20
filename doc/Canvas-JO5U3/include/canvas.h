@@ -50,6 +50,7 @@ namespace canvas {
             virtual ~Canvas( void )
             {
                 // TODO
+                delete[] m_pixels; 
             }
 
             //=== Special members

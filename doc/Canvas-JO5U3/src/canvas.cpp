@@ -23,7 +23,6 @@ namespace canvas {
         this->m_width = clone.m_width;
     }
 
-
     /*!
      * @param source The object we are copying information from.
      * @return A reference to the `this` object.
@@ -95,12 +94,17 @@ namespace canvas {
         size_t offset_pixel( (y*m_width*3) + 3*x);
         if( length <= m_height*m_width )
         {
-            for( auto i(offset_pixel); i < offset_pixel+(length*3); i+=3 )
-            {
-                m_pixels[i] = color.channels[0];
-                m_pixels[i+1] = color.channels[1];
-                m_pixels[i+2] = color.channels[2];                
-            }
+            auto i(offset_pixel);
+            // for( auto k(0u); k < 3; ++k ) 
+            // {
+                for( ; i < offset_pixel+(length*3); i+=3 )
+                {
+                    m_pixels[i] = color.channels[0];
+                    m_pixels[i+1] = color.channels[1];
+                    m_pixels[i+2] = color.channels[2];                
+                }
+            //     i = i+(length*3);
+            // }
         }        
     }
 
