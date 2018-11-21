@@ -1,7 +1,7 @@
 indices:
 
 *comandos = ffmpeg
-*pcg área de jogos =
+*pcg área de jogos = procedural content generation
 *celulas:
 	tem = quatro paredes;
 	tipos =	livre, saida, entrada, caminho, caminho descartado;

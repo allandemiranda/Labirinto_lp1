@@ -16,7 +16,6 @@ namespace canvas {
      */
     Canvas::Canvas( const Canvas & clone )
     {
-        // TODO
         this->m_height = clone.m_height;
         this->m_line_thikness = clone.m_line_thikness;
         this->m_pixels = clone.m_pixels;
@@ -29,7 +28,6 @@ namespace canvas {
      */
     Canvas& Canvas::operator=( const Canvas & source )
     {
-        // TODO: incompleto
         this->m_height = source.m_height;
         this->m_line_thikness = source.m_line_thikness;
         this->m_pixels = source.m_pixels;
@@ -39,7 +37,6 @@ namespace canvas {
 
     void Canvas::clear( const Color& color )
     {
-        // TODO
         for( auto i(0u); i < m_height*m_width*3; i+=3 )
         {
             m_pixels[i] = color.channels[0];
@@ -72,7 +69,6 @@ namespace canvas {
      */
     void Canvas::pixel( coord_type x, coord_type y, const Color& c )
     {
-        // TODO
         size_t offset_pixel( (y*m_width*3) + 3*x);
         if( offset_pixel+2 <= m_width*m_height )
         {
@@ -82,7 +78,6 @@ namespace canvas {
         }
     }
 
-
     /*!
      * Draws on the canvas a horizontal line.
      * @param p The 2D coordinate of the initial pixel of the line.
@@ -90,21 +85,16 @@ namespace canvas {
      */
     void Canvas::hline( coord_type x, coord_type y, size_t length, const Color& color )
     {
-        // TODO
-        size_t offset_pixel( (y*m_width*3) + 3*x);
         if( length <= m_height*m_width )
         {
-            auto i(offset_pixel);
-            // for( auto k(0u); k < 3; ++k ) 
-            // {
-                for( ; i < offset_pixel+(length*3); i+=3 )
+            for( auto k(0); k < this->thickness(); ++k ) 
+            {
+                for( auto i( ( (y*m_width*3) + 3*x) ); i < ( ( (y*m_width*3) + 3*x)+(length*3) ); i+=3 )
                 {
-                    m_pixels[i] = color.channels[0];
-                    m_pixels[i+1] = color.channels[1];
-                    m_pixels[i+2] = color.channels[2];                
+                    std::memcpy( m_pixels+i, color.channels, sizeof(color.channels) );
                 }
-            //     i = i+(length*3);
-            // }
+                ++y;
+            } 
         }        
     }
 
@@ -115,16 +105,16 @@ namespace canvas {
      */
     void Canvas::vline( coord_type x, coord_type y, size_t length, const Color& color )
     {
-        // TODO
-        size_t offset_pixel( (y*m_width*3) + 3*x);
         if( length <= m_height*m_width )
         {
-            for( auto i(offset_pixel); i < offset_pixel+(length*3*m_width); i+= (m_height*4) )
+            for( auto k(0); k < this->thickness(); ++k ) 
             {
-                m_pixels[i] = color.channels[0];
-                m_pixels[i+1] = color.channels[1];
-                m_pixels[i+2] = color.channels[2];             
-            }
+                for( auto i( ( (y*m_width*3) + 3*x) ); i < ( ( (y*m_width*3) + 3*x)+(length*3*m_width) ); i+=3*m_width )
+                {
+                    std::memcpy( m_pixels+i, color.channels, sizeof(color.channels) );
+                }
+                ++x;
+            } 
         }  
     }
 
@@ -137,7 +127,6 @@ namespace canvas {
      */
     void Canvas::box( coord_type x, coord_type y, size_t width, size_t height , const Color& color)
     {
-        // TODO
         size_t offset_pixel( (y*m_width*3) + 3*x);
         if( height <= m_height*m_width )
         {

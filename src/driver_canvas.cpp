@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstring>
 
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "../include/stb_image_write.h"
+#define STB_IMAGE_WRITE_IMPLEMENTATION /// define da biblioteca de png
+#include "../include/stb_image_write.h" /// biblioteca de png
 
 #include "../include/canvas.h"
 
@@ -35,7 +35,7 @@ int main(void)
 
     // Invocando a função de gravação da biblioteca STB para gravar PNG.
     stbi_write_png_compression_level = 0;    // defaults to 8; set to higher for more compression
-    stbi_write_png( "teste.png",      // file name
+    stbi_write_png( "canvas_teste.png",      // file name
                 width, height,        // image dimensions
                 3,                    // # of channels per pixel
                 pixels,               // the pixels

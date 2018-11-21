@@ -1,0 +1,2 @@
+#include "../include/maze.h"
+
