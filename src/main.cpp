@@ -10,10 +10,10 @@ int main( int argc, char **argv )
 {
     /// talvez precise acrescentar mais coisas, mas acho que não vai precisar
     magos::Magos labirinto;
+    labirinto.initializer(argc, argv);
 
     while( not labirinto.gameover )
 	{
-        labirinto.initializer();
         labirinto.update();
         labirinto.render();
 	} 

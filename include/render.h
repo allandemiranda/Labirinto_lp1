@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "../include/canvas.h"
+#include "../include/maze.h"
 
 namespace render {
     /**
@@ -40,9 +41,9 @@ namespace render {
             Render & operator=( const Render & );
 
             //=== Members
-
+            void canvas_prepare( const maze::Maze & );
         private:
-        
+            canvas::Canvas m_canvas;
     };
 } // namespace
 

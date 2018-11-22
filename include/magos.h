@@ -40,7 +40,7 @@ namespace magos {
             Magos & operator=( const Magos & );
 
             //=== Members
-            bool initializer(); /// configura todos os parâmetros de objetos instanciados no construtor. Este método deve validar os argumentos de entrada.
+            bool initializer( int argc, char **argv ); /// configura todos os parâmetros de objetos instanciados no construtor. Este método deve validar os argumentos de entrada.
             void update(); /// Este método deve avançar a simulação atual (construir ou resolver) uma única etapa. E nele estão os estados = start, build, solve, erro, done;
             void render(); /// este é o método que envia a imagem atual do labirinto para um arquivo de imagem de saída.
             bool done(); /// este método retorna true somente se a simulação terminar. Isso pode acontecer quando os processos de construção e resolução são concluídos ou se ocorrer um erro durante a execução.
@@ -56,10 +56,9 @@ namespace magos {
 
             //=== Variáveis necessárias
             /// instancias de cada um objeto das classes Canvas, Maze, Render
-            canvas::Canvas m_canvas; 
+            // canvas::Canvas m_canvas; 
             maze::Maze m_maze;
             render::Render m_render;
-
     };
 } // namespace
 

@@ -42,12 +42,24 @@ namespace maze {
             Maze & operator=( const Maze & );
 
             //=== Members
+            void set_rows( int r ) { m_rows = r; }
+            int get_rows() { return m_rows; }
 
+            void set_columns( int c ) { m_columns = c; }
+            int get_columns() { return m_columns; }
+
+            void set_width( size_t w ) { m_width = w; }
+            int get_width() { return m_width; }
+
+            void set_height( size_t h ) { m_height = h; }
+            size_t get_height() { return m_height; }
         private:
             //=== Members
             maze_matrix m_maze; /// matrix que representa o labirinto
             int m_rows; /// linhas de m_maze
             int m_columns; /// colunas de m_maze
+            size_t m_width;
+            size_t m_height;
     };
 } // namespace
 
