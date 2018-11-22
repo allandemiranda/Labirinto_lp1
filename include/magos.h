@@ -5,6 +5,7 @@
 #include <memory>  // unique_ptr<>
 #include <cstring> // memset, memcpy
 #include <vector>
+#include <random>
 #include <list> // list
 #include <set> // set
 #include "../include/canvas.h"
@@ -22,7 +23,7 @@ namespace magos {
             //=== Alias
             using set_list_path = std::list<std::set<maze::Maze::celula> >; /// apelido para a lista de dicionario de celulas do labirinto
         public:
-
+            enum Game_state { START, BUILD, SOLVE, ERRO, DONE };
             //=== Special members
             Magos( /*algo*/ )
             { /*algo*/ }
@@ -52,6 +53,7 @@ namespace magos {
             //=== Members
             void builder(); /// usado na construção do labirinto
             void solver(); /// usado na solução do labirinto
+            void knockdown_wall(); /// derrubar uma parede da respectiva célula
             /// OBS: outros métodos auxiliares serão acrescentados
 
             //=== Variáveis necessárias
@@ -59,6 +61,8 @@ namespace magos {
             // canvas::Canvas m_canvas; 
             maze::Maze m_maze;
             render::Render m_render;
+            /// lista de hashtable que será usado para criar o caminho de solução do labirinto
+            set_list_path solucao_labirinto;
     };
 } // namespace
 

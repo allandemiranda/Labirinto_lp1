@@ -42,6 +42,7 @@ namespace render {
 
             //=== Members
             void canvas_prepare( const maze::Maze & );
+            void draw();
         private:
             canvas::Canvas m_canvas;
     };

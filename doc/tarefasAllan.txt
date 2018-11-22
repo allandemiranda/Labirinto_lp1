@@ -1,0 +1,29 @@
+# Na classe Maze:
+
+	* inicializar a primeira célula da matrix de células como tipo = ENTRADA, a última como tipo = SAIDA e as demais como tipo = LIVRE, e todas devem ter o estado = NAO_VISITADA;
+	
+# Na classe Magos:
+
+	* knockdown_wall() que escolhe uma parede e derruba ela para criar um caminho;
+
+	* builder() implementa o algoritmo de construção escolhido, e usa o knockdown_wall() e outros métodos necessários(que serão criados) do respectivo algoritmo;
+
+	* update() chama o builder, verifica e identifica o status atual usando o enum Game_state { START, BUILD, SOLVE, ERRO, DONE };
+
+	* criar alguma método tipo print_maze() apenas para ver no console se a matrix labirinto foi criada corretamente, por enquanto que o render não fica totalmente pronto;
+
+	* bool done() este método retorna true somente se a simulação terminar. Isso pode acontecer quando os processos de construção e resolução são concluídos ou se ocorrer um erro durante a execução. /// só que ainda precisa entender direito como isso vai funcionar, por enquanto talvez seja melhor não fazer.
+	
+# OBSERVAÇÕES:
+
+	* essa estrutura vai funcionar melhor se for feita célula por célula, se quiser fazer tudo de uma vez é bom fazer o que o prof disse: fazer um projeto separado e quando vir que ta funcionando adptar para funcionar no estilo game loop célula por célula;
+
+	* se quiser pode fazer todos construtores e destrutores de magos.h e maze.h se for nescessário;
+
+	* foi adicionado ao magos o enum Game_state { START, BUILD, SOLVE, ERRO, DONE } e o set_list_path solucao_labirinto, o último vai servir para calcular o caminho de solução do labirinto, mas se for melhor usar outra estrutura então o solucao_labirinto vai ser descartado;
+
+	* no maze foi adicionado a biblioteca <random> que vai ser usada para usar o shuffle na parte de geração aleatória de escolhas, e o get_maze() que vai ser pra retornar o labirinto;
+
+	* se lembrar de usar o status gameover para finalizar o gameloop;
+	
+	

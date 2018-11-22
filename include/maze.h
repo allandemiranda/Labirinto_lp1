@@ -22,7 +22,7 @@ namespace maze {
             {
                 enum tipo { LIVRE, ENTRADA, SAIDA, CAMINHO, CAMINHO_DESCARTADO };
                 enum estados { VISITADA, NAO_VISITADA, FAZ_PARTE_DO_CAMINHO, NAO_FAZ_PARTE_DO_CAMINHO };
-                bool walls[4] = {0,0,0,0}; /// paredes norte, sul, leste, oeste
+                bool walls[4] = {1,1,1,1}; /// paredes norte, sul, leste, oeste
             };
             //=== Alias
             using maze_matrix = std::vector<std::vector<celula> >; /// apelido para a matrix que representa o labirinto
@@ -66,6 +66,10 @@ namespace maze {
 
             void set_height( size_t h ) { m_height = h; }
             size_t get_height() { return m_height; }
+
+            /// para pegar o labirinto
+            maze_matrix get_maze() { return m_maze; }
+            
         private:
             //=== Members
             maze_matrix m_maze; /// matrix que representa o labirinto
