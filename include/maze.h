@@ -8,26 +8,39 @@
 
 namespace maze {
     /**
-     * @brief classe que representa o labirinto
+     * @brief Classe que representa o labirinto
      * 
      */
     class Maze
     {
-        public:
-            /// estrutura que representa uma celula do labirinto
+        public:            
+            /**
+             * @brief Estrutura que representa uma celula do labirinto
+             * 
+             */
             struct celula 
             {
                 enum tipo { LIVRE, ENTRADA, SAIDA, CAMINHO, CAMINHO_DESCARTADO };
                 enum estados { VISITADA, NAO_VISITADA, FAZ_PARTE_DO_CAMINHO, NAO_FAZ_PARTE_DO_CAMINHO };
-                bool walls[4]; /// paredes norte, sul, leste, oeste
+                bool walls[4] = {0,0,0,0}; /// paredes norte, sul, leste, oeste
             };
             //=== Alias
             using maze_matrix = std::vector<std::vector<celula> >; /// apelido para a matrix que representa o labirinto
-        public:
 
             //=== Special members
-            Maze( /*algo*/ )
-            { /*algo*/ }
+            Maze( void )
+            { //FAZER ESSA PARTE ALLAN
+                for(auto i(0u); i<m_rows; ++i){
+                    std::vector <celula> temp;
+                    for(auto j(0u); j<m_columns; ++j){
+                        //nova_celula celula;
+                        //nova_celula.tipo(LIVRE)
+                        //temp.push_back();                                           
+                    }
+                }
+                //m_maze[0][0].ENTRADA;
+               // m_maze[m_rows-1][m_columns-1].SAIDA;
+            }
 
             /// Destructor.
             virtual ~Maze( void )

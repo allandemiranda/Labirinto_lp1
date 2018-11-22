@@ -2,16 +2,18 @@ indices:
 
 *comandos = ffmpeg
 *pcg área de jogos = procedural content generation
-*celulas:
-	tem = quatro paredes;
-	tipos =	livre, saida, entrada, caminho, caminho descartado;
-	estados = visitada, não visitada, faz parte do caminho, não faz parte do caminho
-	class celula 
-	{
-		enum tipo;
-		enum estados;
-		bool walls[4];
-	}
+*maze:
+	knockdown_wall (derrubar paredes)
+	*celulas:
+		tem = quatro paredes;
+		tipos =	livre, saida, entrada, caminho, caminho descartado;
+		estados = visitada, não visitada, faz parte do caminho, não faz parte do caminho
+		class celula 
+		{
+			enum tipo;
+			enum estados;
+			bool walls[4];
+		}
 
 imagem: 
 	criar classe canvas só para desenho:
@@ -46,7 +48,8 @@ int main()
 							   						
 *planejamento
 	magosMaze: maze->render->canvas and solver
-	render: recebe o maze, desenha usando o canvas
+	render: recebe o célula por célula do maze, desenha usando o canvas
+			função draw  
 	algoritmo para construir =
 	algoritmo para solucionar =
 *versões incrementais

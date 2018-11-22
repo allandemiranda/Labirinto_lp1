@@ -31,3 +31,7 @@ bool magos::Magos::initializer( int argc, char **argv )
         return true;
     }
 }
+
+void magos::Magos::render(){
+    
+}
