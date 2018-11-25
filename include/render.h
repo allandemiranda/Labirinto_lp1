@@ -1,8 +1,8 @@
 #ifndef RENDER_H
 #define RENDER_H
 
-#define STB_IMAGE_WRITE_IMPLEMENTATION /// define da biblioteca de png 
-#include "../include/stb_image_write.h" /// biblioteca de png 
+// #define STB_IMAGE_WRITE_IMPLEMENTATION /// define da biblioteca de png 
+// #include "../include/stb_image_write.h" /// biblioteca de png 
 
 #include <iostream>
 #include <memory>  // unique_ptr<>
@@ -41,7 +41,7 @@ namespace render {
             Render & operator=( const Render & );
 
             //=== Members
-            void canvas_prepare( const maze::Maze & );
+            void canvas_prepare( const Maze & );
             void draw();
         private:
             canvas::Canvas m_canvas;

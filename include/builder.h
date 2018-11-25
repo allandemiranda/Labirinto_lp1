@@ -25,7 +25,7 @@ private:
 public:
     builder(int,int);
     bool status_builder(void);
-    void derrubar_parede(maze&);
+    void derrubar_parede(Maze&);
 };
 
 #endif

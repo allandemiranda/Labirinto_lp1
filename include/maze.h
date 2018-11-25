@@ -18,9 +18,9 @@
  * @brief Class maze do Labirinto
  * 
  */
-class maze
+class Maze
 {
-private:
+public:
     /**
      * @brief Estrutura lógica de uma célula do labirinto
      * 
@@ -30,6 +30,9 @@ private:
         int tipo = 0;                   //! Tipo da célula livre = 0, entrada = 1, saída = 2, caminho = 3, caminho_descartado = 4   
         bool paredes[4] = {1,1,1,1};    //! Paredes norte, sul, leste, oeste da célula
     };
+
+    Maze( /*algo*/ )
+    { /*algo*/ }
     /**
      * @brief Dados lógico do labirinto
      * 
@@ -41,7 +44,7 @@ private:
     celula status_celula(int, int);             //! Status da célula
 
 public:
-    maze(int, int);        
+    Maze(int, int);        
     bool status_celula_livre(int, int);
     bool status_celula_entrada(int, int);
     bool status_celula_saida(int, int);

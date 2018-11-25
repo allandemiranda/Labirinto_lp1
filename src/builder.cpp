@@ -53,7 +53,7 @@ bool builder::status_builder(void){
  * 
  * @param maze_ Class do labirinto
  */
-void builder::derrubar_parede(maze &maze_){
+void builder::derrubar_parede(Maze &maze_){
     if(status_builder()){    
         // Selecionar um índice do conjunto do caminho    
         int sorteio = std::rand()%indices_selecionados.size();

@@ -18,7 +18,7 @@
  * @param num_linhas Quantidade de Linhas que a matriz do labirinto terá
  * @param num_colunas Quantidade de Colunas que a martiz do labirinto terá
  */
-maze::maze(int num_linhas, int num_colunas)
+Maze::Maze(int num_linhas, int num_colunas)
 {
     m_linhas = num_linhas;      //! Guardar quantidade de linahs
     m_colunas = num_colunas;    //! Guardar quantidade de colunas
@@ -44,7 +44,7 @@ maze::maze(int num_linhas, int num_colunas)
  * @param cord_coluna Cordenada da Coluna
  * @return maze::celula A estutura da célula
  */
-maze::celula maze::status_celula(int cord_linha, int cord_coluna){
+Maze::celula Maze::status_celula(int cord_linha, int cord_coluna){
     return m_maze[cord_linha][cord_coluna];
 }
 
@@ -56,7 +56,7 @@ maze::celula maze::status_celula(int cord_linha, int cord_coluna){
  * @return true Se for uma célula Livre
  * @return false Se não for uma célula Livre
  */
-bool maze::status_celula_livre(int cord_linha, int cord_coluna){
+bool Maze::status_celula_livre(int cord_linha, int cord_coluna){
     if(status_celula(cord_linha,cord_coluna).tipo == 0){
         return true;
     }
@@ -71,7 +71,7 @@ bool maze::status_celula_livre(int cord_linha, int cord_coluna){
  * @return true Se for uma célula Entrada
  * @return false Se não for uma célula Entrada
  */
-bool maze::status_celula_entrada(int cord_linha, int cord_coluna){
+bool Maze::status_celula_entrada(int cord_linha, int cord_coluna){
     if(status_celula(cord_linha,cord_coluna).tipo == 1){
         return true;
     }
@@ -86,7 +86,7 @@ bool maze::status_celula_entrada(int cord_linha, int cord_coluna){
  * @return true Se for uma célula Saída
  * @return false Se não for uma célula Saída
  */
-bool maze::status_celula_saida(int cord_linha, int cord_coluna){
+bool Maze::status_celula_saida(int cord_linha, int cord_coluna){
     if(status_celula(cord_linha,cord_coluna).tipo == 2){
         return true;
     }
@@ -101,7 +101,7 @@ bool maze::status_celula_saida(int cord_linha, int cord_coluna){
  * @return true Se for uma célula Caminho
  * @return false Se não for uma célula Caminho
  */
-bool maze::status_celula_caminho(int cord_linha, int cord_coluna){
+bool Maze::status_celula_caminho(int cord_linha, int cord_coluna){
     if(status_celula(cord_linha,cord_coluna).tipo == 3){
         return true;
     }
@@ -116,7 +116,7 @@ bool maze::status_celula_caminho(int cord_linha, int cord_coluna){
  * @return true Se for uma célula Caminho Descartado
  * @return false Se não for uma célula Caminho Descartado
  */
-bool maze::status_celula_caminho_descartado(int cord_linha, int cord_coluna){
+bool Maze::status_celula_caminho_descartado(int cord_linha, int cord_coluna){
     if(status_celula(cord_linha,cord_coluna).tipo == 4){
         return true;
     }
@@ -131,7 +131,7 @@ bool maze::status_celula_caminho_descartado(int cord_linha, int cord_coluna){
  * @return true Se a parede Norte não estiver destruida
  * @return false Se a parede Norte estiver destruida
  */
-bool maze::status_celula_parede_norte(int cord_linha, int cord_coluna){
+bool Maze::status_celula_parede_norte(int cord_linha, int cord_coluna){
     return status_celula(cord_linha,cord_coluna).paredes[0];
 }
 
@@ -143,7 +143,7 @@ bool maze::status_celula_parede_norte(int cord_linha, int cord_coluna){
  * @return true Se a parede Sul não estiver destruida
  * @return false Se a parede Sul estiver destruida
  */
-bool maze::status_celula_parede_sul(int cord_linha, int cord_coluna){
+bool Maze::status_celula_parede_sul(int cord_linha, int cord_coluna){
     return status_celula(cord_linha,cord_coluna).paredes[1];
 }
 
@@ -155,7 +155,7 @@ bool maze::status_celula_parede_sul(int cord_linha, int cord_coluna){
  * @return true Se a parede Leste não estiver destruida
  * @return false Se a parede Leste estiver destruida
  */
-bool maze::status_celula_parede_leste(int cord_linha, int cord_coluna){
+bool Maze::status_celula_parede_leste(int cord_linha, int cord_coluna){
     return status_celula(cord_linha,cord_coluna).paredes[2];
 }
 
@@ -168,7 +168,7 @@ bool maze::status_celula_parede_leste(int cord_linha, int cord_coluna){
  * @return true Se a parede Oeste não estiver destruida
  * @return false Se a parede Oeste estiver destruida
  */
-bool maze::status_celula_parede_oeste(int cord_linha, int cord_coluna){
+bool Maze::status_celula_parede_oeste(int cord_linha, int cord_coluna){
     return status_celula(cord_linha,cord_coluna).paredes[3];
 }
 
@@ -178,7 +178,7 @@ bool maze::status_celula_parede_oeste(int cord_linha, int cord_coluna){
  * @param cord_linha Cordenada da Linha
  * @param cord_coluna Cordenada da Coluna 
  */
-void maze::modificar_para_entrada(int cord_linha, int cord_coluna){
+void Maze::modificar_para_entrada(int cord_linha, int cord_coluna){
     m_maze[cord_linha][cord_coluna].tipo = 1;
 }
 
@@ -188,7 +188,7 @@ void maze::modificar_para_entrada(int cord_linha, int cord_coluna){
  * @param cord_linha Cordenada da Linha
  * @param cord_coluna Cordenada da Coluna 
  */
-void maze::modificar_para_saida(int cord_linha, int cord_coluna){
+void Maze::modificar_para_saida(int cord_linha, int cord_coluna){
     m_maze[cord_linha][cord_coluna].tipo = 2;
 }
 
@@ -198,7 +198,7 @@ void maze::modificar_para_saida(int cord_linha, int cord_coluna){
  * @param cord_linha Cordenada da Linha
  * @param cord_coluna Cordenada da Coluna 
  */
-void maze::modificar_para_caminho(int cord_linha, int cord_coluna){
+void Maze::modificar_para_caminho(int cord_linha, int cord_coluna){
     m_maze[cord_linha][cord_coluna].tipo = 3;
 }
 
@@ -208,7 +208,7 @@ void maze::modificar_para_caminho(int cord_linha, int cord_coluna){
  * @param cord_linha Cordenada da Linha
  * @param cord_coluna Cordenada da Coluna 
  */
-void maze::modificar_para_caminho_descartado(int cord_linha, int cord_coluna){
+void Maze::modificar_para_caminho_descartado(int cord_linha, int cord_coluna){
     m_maze[cord_linha][cord_coluna].tipo = 4;
 }
 
@@ -218,7 +218,7 @@ void maze::modificar_para_caminho_descartado(int cord_linha, int cord_coluna){
  * @param cord_linha Cordenada da Linha
  * @param cord_coluna Cordenada da Coluna  
  */
-void maze::derrubar_parede_norte(int cord_linha, int cord_coluna){
+void Maze::derrubar_parede_norte(int cord_linha, int cord_coluna){
     m_maze[cord_linha][cord_coluna].paredes[0] = false;
 }
 
@@ -228,7 +228,7 @@ void maze::derrubar_parede_norte(int cord_linha, int cord_coluna){
  * @param cord_linha Cordenada da Linha
  * @param cord_coluna Cordenada da Coluna  
  */
-void maze::derrubar_parede_sul(int cord_linha, int cord_coluna){
+void Maze::derrubar_parede_sul(int cord_linha, int cord_coluna){
     m_maze[cord_linha][cord_coluna].paredes[1] = false;
 }
 
@@ -238,7 +238,7 @@ void maze::derrubar_parede_sul(int cord_linha, int cord_coluna){
  * @param cord_linha Cordenada da Linha
  * @param cord_coluna Cordenada da Coluna  
  */
-void maze::derrubar_parede_leste(int cord_linha, int cord_coluna){
+void Maze::derrubar_parede_leste(int cord_linha, int cord_coluna){
     m_maze[cord_linha][cord_coluna].paredes[2] = false;
 }
 
@@ -248,6 +248,6 @@ void maze::derrubar_parede_leste(int cord_linha, int cord_coluna){
  * @param cord_linha Cordenada da Linha
  * @param cord_coluna Cordenada da Coluna  
  */
-void maze::derrubar_parede_oeste(int cord_linha, int cord_coluna){
+void Maze::derrubar_parede_oeste(int cord_linha, int cord_coluna){
     m_maze[cord_linha][cord_coluna].paredes[3] = false;
 }

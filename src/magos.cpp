@@ -5,7 +5,7 @@ bool magos::Magos::initializer( int argc, char **argv )
     int argv2[argc];
     for( unsigned short i(0); i < argc; ++i )
     {
-        argv2[i] = (int)argv[i];
+        argv2[i] = std::atoi(argv[i]);
     }
     if( argc < 5 or argc > 5 )
     {
@@ -24,10 +24,10 @@ bool magos::Magos::initializer( int argc, char **argv )
     }
     else
     {
-        this->m_maze.set_rows(argv2[1]);
-        this->m_maze.set_columns(argv2[2]);
-        this->m_maze.set_width(argv2[3]);
-        this->m_maze.set_height(argv2[4]);
+        // this->m_maze.set_rows(argv2[1]);
+        // this->m_maze.set_columns(argv2[2]);
+        // this->m_maze.set_width(argv2[3]);
+        // this->m_maze.set_height(argv2[4]);
         return true;
     }
 }

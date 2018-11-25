@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstring>
 
-#define STB_IMAGE_WRITE_IMPLEMENTATION /// define da biblioteca de png
-#include "../include/stb_image_write.h" /// biblioteca de png
+// #define STB_IMAGE_WRITE_IMPLEMENTATION /// define da biblioteca de png
+// #include "../include/stb_image_write.h" /// biblioteca de png
 
 #include "../include/magos.h"
 
@@ -14,7 +14,7 @@ int main( int argc, char **argv )
 
     while( not labirinto.gameover )
 	{
-        labirinto.update();
+        // labirinto.update();
         labirinto.render();
 	} 
 }

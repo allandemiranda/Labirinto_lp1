@@ -21,7 +21,7 @@ namespace magos {
     {
         public:
             //=== Alias
-            using set_list_path = std::list<std::set<maze::Maze::celula> >; /// apelido para a lista de dicionario de celulas do labirinto
+            using set_list_path = std::list<std::set<Maze::celula> >; /// apelido para a lista de dicionario de celulas do labirinto
         public:
             enum Game_state { START, BUILD, SOLVE, ERRO, DONE };
             //=== Special members
@@ -48,7 +48,7 @@ namespace magos {
             
             //=== Variáveis necessárias
             bool gameover; /// status que identifica se é o fim do gameloop
-
+            Maze m_maze;
         private:
             //=== Members
             void builder(); /// usado na construção do labirinto
@@ -59,7 +59,7 @@ namespace magos {
             //=== Variáveis necessárias
             /// instancias de cada um objeto das classes Canvas, Maze, Render
             // canvas::Canvas m_canvas; 
-            maze::Maze m_maze;
+            // Maze m_maze;
             render::Render m_render;
             /// lista de hashtable que será usado para criar o caminho de solução do labirinto
             set_list_path solucao_labirinto;
