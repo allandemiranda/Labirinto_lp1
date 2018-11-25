@@ -1,7 +1,7 @@
 /**
  * @file maze.h
  * @author Allan de Miranda - Josoé Cláudio
- * @brief Classe Maze que irá guardar o controle lógico do labirinto
+ * @brief Classe maze que irá guardar o controle lógico do labirinto
  * @version 0.1
  * @date 2018-11-25
  * 
@@ -15,7 +15,7 @@
 #include <vector>   // std::vector
 
 /**
- * @brief Class Maze do Labirinto
+ * @brief Class maze do Labirinto
  * 
  */
 class maze

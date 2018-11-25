@@ -1,7 +1,7 @@
 /**
  * @file maze.cpp
  * @author Allan de Miranda - Josoé Cláudio
- * @brief Funções da class Maze
+ * @brief Funções da class maze
  * @version 0.1
  * @date 2018-11-25
  * 
