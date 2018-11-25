@@ -1,3 +1,5 @@
+cordenada em [linha] x [coluna] -> iniciam em ZERO
+
 # Na classe Maze:
 
 	* inicializar a primeira célula da matrix de células como tipo = ENTRADA, a última como tipo = SAIDA e as demais como tipo = LIVRE, e todas devem ter o estado = NAO_VISITADA;
