@@ -1,6 +1,6 @@
 /**
  * @file builder.h
- * @author Allan de Miranda - Josoé Cláudio
+ * @author Allan de Miranda - Josué Cláudio
  * @brief Class Builder que irá criar o labirinto
  * @version 0.1
  * @date 2018-11-25
@@ -12,23 +12,20 @@
 #ifndef BUILDER_H
 #define BUILDER_H
 
+#include <vector> // std::vector	
+#include "../include/maze.h" // VERIFICAR SE ISSO ENTRA AQUI
 
 class builder
 {
 private:
-    /* data */
+    int tamanho_linha;
+    int tamanho_coluna;
+    std::vector <int> indices_restantes;
+    std::vector <int> indices_selecionados;
 public:
-    builder(/* args */);
-    ~builder();
+    builder(int,int);
+    bool status_builder(void);
+    void derrubar_parede(maze&);
 };
-
-builder::builder(/* args */)
-{
-}
-
-builder::~builder()
-{
-}
-
 
 #endif
