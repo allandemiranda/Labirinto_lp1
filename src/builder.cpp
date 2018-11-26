@@ -87,11 +87,11 @@ void Builder::derrubar_parede(Maze &maze_){
         int cord_coluna = indices_selecionados[sorteio] - (cord_linha*tamanho_coluna);
         // Derruba a parede correta
         // Norte
-        if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]+tamanho_coluna)){
+        if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-tamanho_coluna)){
             maze_.derrubar_parede_norte(cord_linha, cord_coluna);
         } else {
             // Sul
-            if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-tamanho_coluna)){
+            if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]+tamanho_coluna)){
                 maze_.derrubar_parede_sul(cord_linha, cord_coluna);
             } else {
                 // Leste

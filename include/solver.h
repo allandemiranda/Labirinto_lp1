@@ -26,8 +26,8 @@ private:
      * @brief Controles de organização
      * 
      */
-    int tamanho_linha;
-    int tamanho_coluna;
+    int t_linha;
+    int t_coluna;
     int posicao_atual;
     int entrada = 0;
     int saida;
@@ -39,6 +39,8 @@ private:
     std::vector <int> lista;
 public:
     Solver(int, int, Maze&);
+    bool status_resolver(void);
+    void resolver(Maze&);
 };
 
 
