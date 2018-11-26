@@ -16,10 +16,10 @@
 #include "../include/maze.h" // VERIFICAR SE ISSO ENTRA AQUI
 
 /**
- * @brief Class builder para criação do labirinto
+ * @brief Class Builder para criação do labirinto
  * 
  */
-class builder
+class Builder
 {
 private:
     int tamanho_linha;                      //! Quantidade de linhas
@@ -27,7 +27,7 @@ private:
     std::vector <int> indices_restantes;    //! Indices ainda não sorteados
     std::vector <int> indices_selecionados; //! Indices já sorteados
 public:
-    builder(int,int);
+    Builder(int,int);
     bool status_builder(void);
     void derrubar_parede(Maze&);
 };

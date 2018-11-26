@@ -12,11 +12,13 @@
 #ifndef SOLVER_H
 #define SOLVER_H
 
+#include "../include/maze.h" // VERIFICAR SE ISSO ENTRA AQUI
+
 /**
- * @brief Class solver rosolvendo o labirinto
+ * @brief Class Solver rosolvendo o labirinto
  * 
  */
-class solver
+class Solver
 {
 private:
     int tamanho_linha;
@@ -25,15 +27,10 @@ private:
     int entrada[2] = {0,0};
     int saida[2];
 public:
-    solver(/* args */);
-    ~solver();
+    Solver(int, int, int, int, int, Maze&);
 };
 
-solver::solver(/* args */)
-{
-}
-
-solver::~solver()
+Solver::Solver(/* args */)
 {
 }
 

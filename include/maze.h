@@ -15,7 +15,7 @@
 #include <vector> // std::vector
 
 /**
- * @brief Class maze do Labirinto contendo o status do labirinto
+ * @brief Class Maze do Labirinto contendo o status do labirinto
  * 
  */
 class Maze

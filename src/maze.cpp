@@ -13,7 +13,7 @@
 #include "../include/maze.h"
 
 /**
- * @brief Construct a new maze::maze object
+ * @brief Construct a new Maze::Maze object
  * 
  * @param num_linhas Quantidade de Linhas que a matriz do labirinto terá
  * @param num_colunas Quantidade de Colunas que a martiz do labirinto terá

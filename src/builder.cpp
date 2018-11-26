@@ -15,12 +15,12 @@
 #include "../include/builder.h"
 
 /**
- * @brief Construct a new builder::builder object
+ * @brief Construct a new Builder::Builder object
  * 
  * @param num_linhas Quantidade de Linhas que a matriz do labirinto tem
  * @param num_colunas Quantidade de Colunas que a martiz do labirinto tem
  */
-builder::builder(int num_linhas, int num_colunas){
+Builder::Builder(int num_linhas, int num_colunas){
     int contador = 0;
     for(int i(0); i<num_linhas; ++i){
         for(int j(0); j<num_colunas; ++j){
@@ -41,7 +41,7 @@ builder::builder(int num_linhas, int num_colunas){
  * @return true Se ainda estiver derrubando
  * @return false Se ja parou de derrubar
  */
-bool builder::status_builder(void){
+bool Builder::status_builder(void){
     if(indices_restantes.size()!=0){
         return true;
     }
@@ -53,7 +53,7 @@ bool builder::status_builder(void){
  * 
  * @param maze_ Class do labirinto
  */
-void builder::derrubar_parede(Maze &maze_){
+void Builder::derrubar_parede(Maze &maze_){
     while(status_builder()){    
         // Selecionar um índice do conjunto do caminho    
         int sorteio = std::rand()%indices_selecionados.size();
