@@ -15,13 +15,17 @@
 #include <vector> // std::vector	
 #include "../include/maze.h" // VERIFICAR SE ISSO ENTRA AQUI
 
+/**
+ * @brief Class builder para criação do labirinto
+ * 
+ */
 class builder
 {
 private:
-    int tamanho_linha;
-    int tamanho_coluna;
-    std::vector <int> indices_restantes;
-    std::vector <int> indices_selecionados;
+    int tamanho_linha;                      //! Quantidade de linhas
+    int tamanho_coluna;                     //! Quantidade de colunas
+    std::vector <int> indices_restantes;    //! Indices ainda não sorteados
+    std::vector <int> indices_selecionados; //! Indices já sorteados
 public:
     builder(int,int);
     bool status_builder(void);

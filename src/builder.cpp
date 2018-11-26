@@ -54,7 +54,7 @@ bool builder::status_builder(void){
  * @param maze_ Class do labirinto
  */
 void builder::derrubar_parede(Maze &maze_){
-    if(status_builder()){    
+    while(status_builder()){    
         // Selecionar um índice do conjunto do caminho    
         int sorteio = std::rand()%indices_selecionados.size();
         // Mostrar possibilidades para criar novo caminho
@@ -75,6 +75,10 @@ void builder::derrubar_parede(Maze &maze_){
             if(std::binary_search(indices_selecionados.begin(),indices_selecionados.end(),possiveis[i])){
                 possiveis.erase(possiveis.begin()+i);
             }
+        }
+        // Se o indice não tiver possivilidade, sortear um novo
+        if(possiveis.size()==0){
+            continue;
         }
         // Sortear possibilidade
         int sorteio_possivel = std::rand()%possiveis.size();
@@ -98,7 +102,7 @@ void builder::derrubar_parede(Maze &maze_){
                     if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-1)){
                         maze_.derrubar_parede_oeste(cord_linha, cord_coluna);
                     } else {
-                        // RETORNAR ERRO AO DERRUBAR PAREDE
+                        // RETORNAR ERRO AO DERRUBAR PAREDE (DEBUG)
                     }
                 }
             }
@@ -112,5 +116,6 @@ void builder::derrubar_parede(Maze &maze_){
                 break;
             }
         }
+        break;
     }
 }

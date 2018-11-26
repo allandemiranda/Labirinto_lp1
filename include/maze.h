@@ -15,7 +15,7 @@
 #include <vector> // std::vector
 
 /**
- * @brief Class maze do Labirinto
+ * @brief Class maze do Labirinto contendo o status do labirinto
  * 
  */
 class Maze
@@ -31,8 +31,6 @@ public:
         bool paredes[4] = {1,1,1,1};    //! Paredes norte, sul, leste, oeste da célula
     };
 
-    Maze( /*algo*/ )
-    { /*algo*/ }
     /**
      * @brief Dados lógico do labirinto
      * 
@@ -40,7 +38,6 @@ public:
     int m_linhas;                               //! Quantidade de linhas
     int m_colunas;                              //! Quantidade de colunas        
     std::vector <std::vector <celula>> m_maze;  //! Matriz que guarda as células
-    int posicao_atual[2] = {0,0};               //! Célula que se encontra o personagem
     celula status_celula(int, int);             //! Status da célula
 
 public:

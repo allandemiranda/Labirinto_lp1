@@ -35,6 +35,13 @@ Maze::Maze(int num_linhas, int num_colunas)
         }
         m_maze.push_back(temp);
     }
+
+    /**
+     * @brief Setar entrada e saída do labirinto
+     * 
+     */
+    m_maze[0][0].tipo = 1;                      //! Entrada do labirinto
+    m_maze[m_linhas-1][m_colunas-1].tipo = 2;   //! Saída do labirinto
 }
 
 /**
