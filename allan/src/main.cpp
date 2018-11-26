@@ -39,7 +39,8 @@ int main(int argc, char const *argv[])
 
     // Gaming
     Magos magos_(atoi(argv[0]), atoi(argv[1]), atoi(argv[2]), atoi(argv[3]));
-
+    magos_.building();
+    magos_.solveing();
     // Fim do jogo
     return 0;
 }
