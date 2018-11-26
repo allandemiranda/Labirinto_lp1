@@ -1,7 +1,7 @@
 /**
  * @file builder.cpp
  * @author Allan de Miranda - Josué Cláudio
- * @brief Funções class builder
+ * @brief Funções class Builder
  * @version 0.1
  * @date 2018-11-25
  * 

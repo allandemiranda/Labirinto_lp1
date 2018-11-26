@@ -12,6 +12,7 @@
 #ifndef SOLVER_H
 #define SOLVER_H
 
+#include <vector> // std::vector
 #include "../include/maze.h" // VERIFICAR SE ISSO ENTRA AQUI
 
 /**
@@ -21,18 +22,25 @@
 class Solver
 {
 private:
+    /**
+     * @brief Controles de organização
+     * 
+     */
     int tamanho_linha;
     int tamanho_coluna;
-    int posicao_atual[2] = {0,0};
-    int entrada[2] = {0,0};
-    int saida[2];
+    int posicao_atual;
+    int entrada = 0;
+    int saida;
+    /**
+     * @brief Controles de solução
+     * 
+     */
+    std::vector <std::vector <int>> tabela;
+    std::vector <int> lista;
 public:
-    Solver(int, int, int, int, int, Maze&);
+    Solver(int, int, Maze&);
 };
 
-Solver::Solver(/* args */)
-{
-}
 
 
 #endif

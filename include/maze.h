@@ -1,7 +1,7 @@
 /**
  * @file maze.h
  * @author Allan de Miranda - Josué Cláudio
- * @brief Classe maze que irá guardar o controle lógico do labirinto
+ * @brief Classe Maze que irá guardar o controle lógico do labirinto
  * @version 0.1
  * @date 2018-11-25
  * 
