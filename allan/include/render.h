@@ -27,6 +27,7 @@ private:
     int p_width;        //! Width da imagem
     int p_height;       //! Height da iamgem
     int status;         //! Status de impressão building = 0, solveing = 1
+    int numero = 0;     //! Guarda informações da sequência numérica
 public:
     Render(int, int, int, int, int);
     void print(Maze maze_);
