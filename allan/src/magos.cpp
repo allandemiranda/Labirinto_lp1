@@ -35,7 +35,7 @@ void Magos::building(void){
  */
 void Magos::solveing(void){
     Solver solver_(n_linhas, n_colunas, maze_);
-    Render render_(n_linhas, n_colunas, p_width, p_height, 0);
+    Render render_(n_linhas, n_colunas, p_width, p_height, 1);
     // Game Loop Builder
     while(solver_.status_resolver()){
         // Se mover no labirinto

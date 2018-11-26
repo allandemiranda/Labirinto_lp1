@@ -38,7 +38,8 @@ Render::Render(int n_l, int n_c, int p_w, int p_h, int stt){
 void Render::print(Maze maze_){
     Canvas canvas_; /// Suposta declaraçaõ do canvas
 
-    /// redebe o Maze -> verifica o status de cada índice (célula) -> 
+    /// recebe o Maze (contem toda parte lógica do labirinto) 
+    /// -> verifica o status de cada índice (célula) -> 
     /// Desenha -> Salva no canto correto de acordo com o status
 
 }
