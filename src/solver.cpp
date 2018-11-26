@@ -9,6 +9,7 @@
  * 
  */
 
+#include <vector> // std::vector
 #include "../include/solver.h"
 
 /**
@@ -32,6 +33,10 @@ Solver::Solver(int num_linha, int num_coluna, Maze & maze_){
      * @brief Mapear e preencher tabela de solução
      * 
      */
-    
+    for(int i(0); i<(num_linha*num_coluna); ++i){
+        std::vector <int> temp;
+        // Calcular coordenada do índice i
+        //int linha = i/ TERMINAR
+    }
 
 }

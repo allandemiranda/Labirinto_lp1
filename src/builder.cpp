@@ -65,11 +65,11 @@ void Builder::derrubar_parede(Maze &maze_){
         if((indices_selecionados[sorteio]-1) >= 0){
             possiveis.push_back(indices_selecionados[sorteio]-1);
         }
-        if((indices_selecionados[sorteio]+tamanho_linha) < (tamanho_linha*tamanho_coluna)){
-            possiveis.push_back(indices_selecionados[sorteio]+tamanho_linha);
+        if((indices_selecionados[sorteio]+tamanho_coluna) < (tamanho_linha*tamanho_coluna)){
+            possiveis.push_back(indices_selecionados[sorteio]+tamanho_coluna);
         }
-        if((indices_selecionados[sorteio]-tamanho_linha) >= 0){
-            possiveis.push_back(indices_selecionados[sorteio]-tamanho_linha);
+        if((indices_selecionados[sorteio]-tamanho_coluna) >= 0){
+            possiveis.push_back(indices_selecionados[sorteio]-tamanho_coluna);
         }
         for(int i=(possiveis.size()-1); i>=0; --i){
             if(std::binary_search(indices_selecionados.begin(),indices_selecionados.end(),possiveis[i])){
@@ -83,15 +83,15 @@ void Builder::derrubar_parede(Maze &maze_){
         // Sortear possibilidade
         int sorteio_possivel = std::rand()%possiveis.size();
         // Verificar coordenada que os une (em relação ao índice sorteio)
-        int cord_linha = indices_selecionados[sorteio]/tamanho_linha;
-        int cord_coluna = indices_selecionados[sorteio] - (cord_linha*tamanho_linha);
+        int cord_linha = indices_selecionados[sorteio]/tamanho_coluna;
+        int cord_coluna = indices_selecionados[sorteio] - (cord_linha*tamanho_coluna);
         // Derruba a parede correta
         // Norte
-        if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]+tamanho_linha)){
+        if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]+tamanho_coluna)){
             maze_.derrubar_parede_norte(cord_linha, cord_coluna);
         } else {
             // Sul
-            if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-tamanho_linha)){
+            if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-tamanho_coluna)){
                 maze_.derrubar_parede_sul(cord_linha, cord_coluna);
             } else {
                 // Leste
