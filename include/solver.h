@@ -26,23 +26,21 @@ private:
      * @brief Controles de organização
      * 
      */
-    int t_linha;
-    int t_coluna;
-    int posicao_atual;
-    int entrada = 0;
-    int saida;
+    int t_linha;        //! Quantidade de linhas
+    int t_coluna;       //! Quantidade de colunas  
+    int posicao_atual;  //! Indíce atual que se encontra a procura
+    int entrada = 0;    //! Posição de entrada do labirinto
+    int saida;          //! Posiçao de saída do labirinto
     /**
      * @brief Controles de solução
      * 
      */
-    std::vector <std::vector <int>> tabela;
-    std::vector <int> lista;
+    std::vector <std::vector <int>> tabela; //! Tabela contendo informações das possíveis movimentações
+    std::vector <int> lista;                //! Lista com o caminho andado
 public:
     Solver(int, int, Maze&);
     bool status_resolver(void);
     void resolver(Maze&);
 };
-
-
 
 #endif

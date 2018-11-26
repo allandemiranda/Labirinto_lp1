@@ -65,7 +65,7 @@ Solver::Solver(int num_linha, int num_coluna, Maze & maze_){
  * @return false Se já foi resolvido
  */
 bool Solver::status_resolver(void){
-    if(*(lista.end()-1) == ((t_linha*t_coluna)-1)){
+    if(*(lista.end()-1) == saida){
         return false;
     }
     return true;
@@ -77,44 +77,46 @@ bool Solver::status_resolver(void){
  * @param maze_ Class que contem dados do labirinto
  */
 void Solver::resolver(Maze & maze_){
-    // Movimentação lógica
-    // Verificar as possibilidades de seguir no labirinto
-    std::vector <int> possibilidades;
-    for(int i(0); i<tabela[posicao_atual].size(); ++i){
-        possibilidades.push_back(tabela[posicao_atual][i]);
-    }
-    for(int i = (possibilidades.size()-1); i>=0; --i){
-        for(int j(0); j<lista.size(); ++j){
-            if(possibilidades[i] == lista[j]){
-                possibilidades.erase(possibilidades.begin()+i);
-                break;
+    if(status_resolver()){
+        // Movimentação lógica
+        // Verificar as possibilidades de seguir no labirinto
+        std::vector <int> possibilidades;
+        for(int i(0); i<tabela[posicao_atual].size(); ++i){
+            possibilidades.push_back(tabela[posicao_atual][i]);
+        }
+        for(int i = (possibilidades.size()-1); i>=0; --i){
+            for(int j(0); j<lista.size(); ++j){
+                if(possibilidades[i] == lista[j]){
+                    possibilidades.erase(possibilidades.begin()+i);
+                    break;
+                }
             }
         }
-    }
-    if(possibilidades.size()>0){
-        int indice_sorteado = std::rand()%possibilidades.size();
-        // Aviciona a lista o índice
-        lista.push_back(possibilidades[indice_sorteado]);
-        // Exclui o índice da tabela
-        for(int i(0); i<tabela[posicao_atual].size(); ++i){
-            if(possibilidades[indice_sorteado] == tabela[posicao_atual][i]){
-                tabela[posicao_atual].erase(tabela[posicao_atual].begin()+i);
-                break;
-            }
-        }    
-        // Atualiza posição
-        posicao_atual = possibilidades[indice_sorteado];        
-        // Modificar no labirinto o status das células envolvidas
-        int cord_linha = (*(lista.end()-1) / t_coluna);
-        int cord_coluna = (*(lista.end()-1) - (cord_linha * t_coluna));
-        maze_.modificar_para_caminho(cord_linha,cord_coluna);
-    } else {        
-        // Modificar no labirinto o status das células envolvidas
-        int cord_linha = (*(lista.end()-1) / t_coluna);
-        int cord_coluna = (*(lista.end()-1) - (cord_linha * t_coluna));
-        maze_.modificar_para_caminho_descartado(cord_linha,cord_coluna);
-        // Terminar movimentação lógica
-        lista.pop_back();
-        posicao_atual = *(lista.end()-1);
+        if(possibilidades.size()>0){
+            int indice_sorteado = std::rand()%possibilidades.size();
+            // Aviciona a lista o índice
+            lista.push_back(possibilidades[indice_sorteado]);
+            // Exclui o índice da tabela
+            for(int i(0); i<tabela[posicao_atual].size(); ++i){
+                if(possibilidades[indice_sorteado] == tabela[posicao_atual][i]){
+                    tabela[posicao_atual].erase(tabela[posicao_atual].begin()+i);
+                    break;
+                }
+            }    
+            // Atualiza posição
+            posicao_atual = possibilidades[indice_sorteado];        
+            // Modificar no labirinto o status das células envolvidas
+            int cord_linha = (*(lista.end()-1) / t_coluna);
+            int cord_coluna = (*(lista.end()-1) - (cord_linha * t_coluna));
+            maze_.modificar_para_caminho(cord_linha,cord_coluna);
+        } else {        
+            // Modificar no labirinto o status das células envolvidas
+            int cord_linha = (*(lista.end()-1) / t_coluna);
+            int cord_coluna = (*(lista.end()-1) - (cord_linha * t_coluna));
+            maze_.modificar_para_caminho_descartado(cord_linha,cord_coluna);
+            // Terminar movimentação lógica
+            lista.pop_back();
+            posicao_atual = *(lista.end()-1);
+        }
     }
 }
