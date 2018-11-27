@@ -67,186 +67,19 @@ void Render::print(Maze maze_){
             if(maze_.status_celula_parede_oeste(j,i)){
                 canvas_.vline(orig_x, orig_y, altura_p, BLACK);
             }
-            //Verificando status da célula e desenhando se não for livre
-            /// -> Divida o quadrado em sub quadrados
-            /// -> Mova a origem para o canto esquerdo superior de um subquadrado
-            /// -> Verifique se existe uma parede, se não existir continue a verificação, se existir pule para o próximo subquadrado
-            /// -> Verifique se ele é cainho, se sim, preencha de vermelho e pule para o próximo subquadrado
-            /// -> Verifique se ele é caminho desrcartado, se sim, preencha de amarelo e pule para o próximo subquadrado
-            /// -> Complete essa operação para os 4 lados do quadrado
-
-            /// anotação mais detalhada
-            /// verificar status da celula atual
+            //Verificando status da célula e desenhando se não for livre            
             if(maze_.status_celula_entrada(j,i)){
-                canvas_.box( orig_x+(largura_p/5), orig_y+(altura_p/5), (largura_p/5) * 3, (altura_p/5) * 3, DEEP_SKY_BLUE );
-                if( !maze_.status_celula_parede_sul(j,i) )
-                {
-                    if(maze_.status_celula_saida(j,i+1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) * 4 ), largura_p/5 * 3,  (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho(j,i+1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) * 4 ), largura_p/5 * 3,  (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j,i+1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) * 4 ), largura_p/5 * 3,  (altura_p/5), YELLOW );                  
-                    }
-                }
-                if( !maze_.status_celula_parede_leste(j,i) )
-                {
-                    if(maze_.status_celula_saida(j+1,i)){
-                        canvas_.box( orig_x+( (largura_p/5) * 4), orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho(j+1,i)){
-                        canvas_.box( orig_x+( (largura_p/5) * 4), orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j+1,i)){
-                        canvas_.box( orig_x+( (largura_p/5) * 4), orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, YELLOW );                     
-                    }
-                }
+                canvas_.box( orig_x+4, orig_y+4, largura_p - 8, altura_p - 8, DEEP_SKY_BLUE );
             }
-
             if(maze_.status_celula_saida(j,i)){
-                canvas_.box( orig_x+(largura_p/5), orig_y+(altura_p/5), (largura_p/5) * 3, (altura_p/5) * 3, GREEN );
-                
-                if( !maze_.status_celula_parede_norte(j,i) )
-                {
-                    if(maze_.status_celula_saida(j,i-1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) ), largura_p/5 * 3, (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho(j,i-1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) ), largura_p/5 * 3, (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j,i-1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) ), largura_p/5 * 3, (altura_p/5), YELLOW );                 
-                    }
-                }
-                if( !maze_.status_celula_parede_oeste(j,i) )
-                {
-                    if(maze_.status_celula_saida(j-1,i)){
-                        canvas_.box( orig_x, orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho(j-1,i)){
-                        canvas_.box( orig_x, orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j-1,i)){
-                        canvas_.box( orig_x, orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, YELLOW );                     
-                    }
-                }
-
+                canvas_.box( orig_x+4, orig_y+4, largura_p - 8, altura_p - 8, GREEN );
             }
-            /// caminho
             if(maze_.status_celula_caminho(j,i)){
-                canvas_.box( orig_x+(largura_p/5), orig_y+(altura_p/5), (largura_p/5) * 3, (altura_p/5) * 3, RED );
-                /// sul
-                if( !maze_.status_celula_parede_sul(j,i) )
-                {
-                    if(maze_.status_celula_saida(j,i+1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) * 4 ), largura_p/5 * 3,  (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho(j,i+1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) * 4 ), largura_p/5 * 3,  (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j,i+1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) * 4 ), largura_p/5 * 3,  (altura_p/5), YELLOW );                  
-                    }
-                }
-                /// leste
-                if( !maze_.status_celula_parede_leste(j,i) )
-                {
-                    if(maze_.status_celula_saida(j+1,i)){
-                        canvas_.box( orig_x+( (largura_p/5) * 4), orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho(j+1,i)){
-                        canvas_.box( orig_x+( (largura_p/5) * 4), orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j+1,i)){
-                        canvas_.box( orig_x+( (largura_p/5) * 4), orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, YELLOW );                     
-                    }
-                }
-                /// norte
-                if( !maze_.status_celula_parede_norte(j,i) )
-                {
-                    if(maze_.status_celula_saida(j,i-1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) ), largura_p/5 * 3, (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho(j,i-1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) ), largura_p/5 * 3, (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j,i-1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) ), largura_p/5 * 3, (altura_p/5), YELLOW );                 
-                    }
-                }
-                /// oeste
-                if( !maze_.status_celula_parede_oeste(j,i) )
-                {
-                    if(maze_.status_celula_saida(j-1,i)){
-                        canvas_.box( orig_x, orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho(j-1,i)){
-                        canvas_.box( orig_x, orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j-1,i)){
-                        canvas_.box( orig_x, orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, YELLOW );                     
-                    }
-                }
+                canvas_.box( orig_x+4, orig_y+4, largura_p - 8, altura_p - 8, RED );
             }
-
             if(maze_.status_celula_caminho_descartado(j,i)){
-                canvas_.box( orig_x+(largura_p/5), orig_y+(altura_p/5), (largura_p/5) * 3, (altura_p/5) * 3, YELLOW );
-                /// sul
-                if( !maze_.status_celula_parede_sul(j,i) )
-                {
-                    if(maze_.status_celula_saida(j,i+1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) * 4 ), largura_p/5 * 3,  (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho(j,i+1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) * 4 ), largura_p/5 * 3,  (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j,i+1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) * 4 ), largura_p/5 * 3,  (altura_p/5), YELLOW );                  
-                    }
-                }
-                /// leste
-                if( !maze_.status_celula_parede_leste(j,i) )
-                {
-                    if(maze_.status_celula_saida(j+1,i)){
-                        canvas_.box( orig_x+( (largura_p/5) * 4), orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho(j+1,i)){
-                        canvas_.box( orig_x+( (largura_p/5) * 4), orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j+1,i)){
-                        canvas_.box( orig_x+( (largura_p/5) * 4), orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, YELLOW );                     
-                    }
-                }
-                /// norte
-                if( !maze_.status_celula_parede_norte(j,i) )
-                {
-                    if(maze_.status_celula_saida(j,i-1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) ), largura_p/5 * 3, (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho(j,i-1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) ), largura_p/5 * 3, (altura_p/5), RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j,i-1)){
-                        canvas_.box( orig_x+(largura_p/5), orig_y+( (altura_p/5) ), largura_p/5 * 3, (altura_p/5), YELLOW );                 
-                    }
-                }
-                /// oeste
-                if( !maze_.status_celula_parede_oeste(j,i) )
-                {
-                    if(maze_.status_celula_saida(j-1,i)){
-                        canvas_.box( orig_x, orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho(j-1,i)){
-                        canvas_.box( orig_x, orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, RED );
-                    }
-                    if(maze_.status_celula_caminho_descartado(j-1,i)){
-                        canvas_.box( orig_x, orig_y+( altura_p/5 ), (largura_p/5), (altura_p/5) * 3, YELLOW );                     
-                    }
-                }
+                canvas_.box( orig_x+4, orig_y+4, largura_p - 8, altura_p - 8, YELLOW );
             }
-
         }
     }
     // Verificar onde salvar
