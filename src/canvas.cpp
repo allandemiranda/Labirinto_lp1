@@ -136,7 +136,7 @@ namespace canvas {
         size_t offset_pixel( (y*m_width*3) + 3*x);
         if( height <= m_height*m_width )
         {
-            for( auto i(offset_pixel); i < offset_pixel+height*3; i+=3, ++x )
+            for( auto i(offset_pixel); i < offset_pixel+width*3; i+=3, ++x )
             {
                 vline(x, y, height, color);
             }
