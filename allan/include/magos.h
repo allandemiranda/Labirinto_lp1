@@ -8,7 +8,6 @@
  * @copyright Copyright (c) 2018
  * 
  */
-
 #ifndef MAGOS_H
 #define MAGOS_H
 
@@ -21,9 +20,9 @@
  */
 class Magos
 {
-private:
-    int n_linhas;       //! Número de linhas no labirinto
+private:    
     int n_colunas;      //! Número de colunas no labirinto
+    int n_linhas;       //! Número de linhas no labirinto
     int p_width;        //! Width da imagem
     int p_height;       //! Height da iamgem
     Maze maze_;         //! Class com informações das células do labirinto
@@ -36,18 +35,18 @@ public:
      * @param p_w Width da imagem
      * @param p_h Height da iamgem
      */
-    Magos(int linha, int coluna, int p_w, int p_h) : 
-        maze_(linha, coluna){
-            n_linhas = linha;
+    Magos(int coluna, int linha, int p_w, int p_h) : 
+        maze_(coluna, linha){                   
             n_colunas = coluna;
+            n_linhas = linha;
             p_width = p_w;
-            p_height = p_h;
-            // Renderizar imagem do labirinto
-            Render render_(n_linhas, n_colunas, p_width, p_height, 0);
+            p_height = p_h;            
+            // Renderizar imagem do labirinto  
+            Render render_(n_colunas, n_linhas, p_width, p_height, 0);
             render_.print(maze_);
         };    
     
-    void building(void);
+    void building(void);    
     void solveing(void);    
 };
 

@@ -26,9 +26,9 @@ using namespace canvas;
  * @param p_h Height da iamgem
  * @param stt Status de impressão building = 0, solveing = 1
  */
-Render::Render(int n_l, int n_c, int p_w, int p_h, int stt){
-    n_linhas = n_l;       //! Número de linhas no labirinto
+Render::Render(int n_c, int n_l, int p_w, int p_h, int stt){       
     n_colunas = n_c;      //! Número de colunas no labirinto
+    n_linhas = n_l;       //! Número de linhas no labirinto
     p_width = p_w;        //! Width da imagem
     p_height = p_h;       //! Height da iamgem
     status = stt;         //! Status de impressão building = 0, solveing = 1
@@ -43,40 +43,40 @@ void Render::print(Maze maze_){
     Canvas canvas_(p_width, p_height);
     // Pintar o fundo de branco
     canvas_.clear( WHITE );
-    // Determinar tamanho espacial da célula
-    int largura_p = p_width/n_colunas;
-    int altura_p = p_height/n_linhas;
-    // Verificar cada célula e desenhar
+    // Determinar tamanho espacial da célula    
+    int largura_p = p_width/(n_colunas);    
+    int altura_p = p_height/(n_linhas) - 1;
+    // Verificar cada célula e desenhar    
     for(size_t i(0); i<n_linhas; ++i){
         for(size_t j(0); j<n_colunas; ++j){
             // Verificar posição inicial do desenho
-            coord_type orig_x{i*largura_p}, orig_y{j*altura_p};
+            coord_type orig_x{j*largura_p}, orig_y{i*altura_p};
             canvas_.thickness( 3 );
-            // Verificando paredes e desenhando se possivel            
-            if(maze_.status_celula_parede_norte(i,j)){
+            //Verificando paredes e desenhando se possivel            
+            if(maze_.status_celula_parede_norte(j,i)){
                 canvas_.hline(orig_x, orig_y, largura_p, BLACK);
             }
-            if(maze_.status_celula_parede_sul(i,j)){
+            if(maze_.status_celula_parede_sul(j,i)){
                 canvas_.hline(orig_x, orig_y+altura_p, largura_p, BLACK);
             }
-            if(maze_.status_celula_parede_leste(i,j)){
+            if(maze_.status_celula_parede_leste(j,i)){
                 canvas_.vline(orig_x+largura_p, orig_y, altura_p, BLACK);
             }
-            if(maze_.status_celula_parede_oeste(i,j)){
+            if(maze_.status_celula_parede_oeste(j,i)){
                 canvas_.vline(orig_x, orig_y, altura_p, BLACK);
             }
-            // Verificando status da célula e desenhando se não for livre
-            if(maze_.status_celula_entrada(i,j)){
-                canvas_.box( orig_x+5, orig_y+5, largura_p-5, altura_p-5, DEEP_SKY_BLUE );
+            //Verificando status da célula e desenhando se não for livre
+            if(maze_.status_celula_entrada(j,i)){
+                canvas_.box( orig_x+5, orig_y+5, largura_p-40, altura_p-40, DEEP_SKY_BLUE );
             }
-            if(maze_.status_celula_saida(i,j)){
-                canvas_.box( orig_x+5, orig_y+5, largura_p-5, altura_p-5, GREEN );
+            if(maze_.status_celula_saida(j,i)){
+                canvas_.box( orig_x+5, orig_y+5, largura_p-40, altura_p-40, GREEN );
             }
-            if(maze_.status_celula_caminho(i,j)){
-                 canvas_.box( orig_x+5, orig_y+5, largura_p-5, altura_p-5, RED );
+            if(maze_.status_celula_caminho(j,i)){
+                 canvas_.box( orig_x+5, orig_y+5, largura_p-40, altura_p-40, RED );
             }
-            if(maze_.status_celula_caminho_descartado(i,j)){
-                 canvas_.box( orig_x+5, orig_y+5, largura_p-5, altura_p-5, YELLOW );
+            if(maze_.status_celula_caminho_descartado(j,i)){
+                 canvas_.box( orig_x+5, orig_y+5, largura_p-40, altura_p-40, YELLOW );
             }
         }
     }
@@ -89,25 +89,23 @@ void Render::print(Maze maze_){
         std::string temp_name = "builder/building_"+std::to_string(numero)+".png";
         char *c_temp_name = new char[temp_name.length() + 1];
         std::strcpy(c_temp_name, temp_name.c_str());
-        delete[] c_temp_name;
         stbi_write_png( c_temp_name,      // file name
                     width, height,        // image dimensions
                     3,                    // # of channels per pixel
                     pixels,               // the pixels
                     width*3)  ;           // length of a row (in bytes), see above.
-
+        delete[] c_temp_name;
         numero++;
     } else {
         std::string temp_name = "solver/solving_"+std::to_string(numero)+".png";
         char *c_temp_name = new char[temp_name.length() + 1];
         std::strcpy(c_temp_name, temp_name.c_str());
-        delete[] c_temp_name;
         stbi_write_png( c_temp_name,      // file name
                     width, height,        // image dimensions
                     3,                    // # of channels per pixel
                     pixels,               // the pixels
                     width*3)  ;           // length of a row (in bytes), see above.
-
+        delete[] c_temp_name;
         numero++;
     }  
 }

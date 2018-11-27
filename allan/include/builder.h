@@ -13,7 +13,7 @@
 #define BUILDER_H
 
 #include <vector> // std::vector	
-#include "../include/maze.h" // VERIFICAR SE ISSO ENTRA AQUI
+#include "../include/maze.h"
 
 /**
  * @brief Class Builder para criação do labirinto
@@ -22,8 +22,8 @@
 class Builder
 {
 private:
-    int tamanho_linha;                      //! Quantidade de linhas
     int tamanho_coluna;                     //! Quantidade de colunas
+    int tamanho_linha;                      //! Quantidade de linhas
     std::vector <int> indices_restantes;    //! Indices ainda não sorteados
     std::vector <int> indices_selecionados; //! Indices já sorteados
 public:

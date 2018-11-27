@@ -15,7 +15,7 @@
 
 int main(int argc, char const *argv[])
 {
-    // Verificar se existem 4 argumentos
+    /* Verificar se existem 4 argumentos
     if(argc != 4){
         std::cout << "Erro: número incorreto de argumento" << std::endl;
         std::cout << "São 4 argumentos, ex: [ linhas, colunas, largura, altura ]" << std::endl;
@@ -35,11 +35,12 @@ int main(int argc, char const *argv[])
             std::cout << "Erro: Argumentos 1 e 2 devem ser maiores que 1" << std::endl;
             return 0;
         }
-    }
+    }*/
 
     // Gaming
-    Magos magos_(atoi(argv[0]), atoi(argv[1]), atoi(argv[2]), atoi(argv[3]));
-    magos_.building();
+    //Magos magos_(atoi(argv[0]), atoi(argv[1]), atoi(argv[2]), atoi(argv[3]));
+    Magos magos_(5, 3, 1200, 800);    
+    magos_.building();    
     magos_.solveing();
     // Fim do jogo
     return 0;

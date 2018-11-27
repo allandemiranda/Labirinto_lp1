@@ -20,16 +20,16 @@
  * @param num_coluna Quantidade de Colunas que a martiz do labirinto terá 
  * @param maze_ O labirinto
  */
-Solver::Solver(int num_linha, int num_coluna, Maze & maze_){
+Solver::Solver(int num_coluna, int num_linha, Maze & maze_){
     /**
      * @brief configurando controles de organização
      * 
      */
-    t_linha = num_linha;
     t_coluna = num_coluna;
+    t_linha = num_linha;    
     saida = (num_linha*num_coluna) - 1;
     posicao_atual = 0;
-    lista.push_back(0);
+    lista.push_back(0);   
 
     /**
      * @brief Mapear e preencher tabela de solução
@@ -41,16 +41,16 @@ Solver::Solver(int num_linha, int num_coluna, Maze & maze_){
         int cord_linha = (i / num_coluna);
         int cord_coluna = (i - (cord_linha * num_coluna));
         // Verificar possibilidades
-        if(maze_.status_celula_parede_norte(cord_linha,cord_coluna)){
+        if(maze_.status_celula_parede_norte(cord_coluna,cord_linha)){
             temp.push_back(i-num_coluna);
         }
-        if(maze_.status_celula_parede_sul(cord_linha,cord_coluna)){
+        if(maze_.status_celula_parede_sul(cord_coluna,cord_linha)){
             temp.push_back(i+num_coluna);
         }
-        if(maze_.status_celula_parede_leste(cord_linha,cord_coluna)){
+        if(maze_.status_celula_parede_leste(cord_coluna,cord_linha)){
             temp.push_back(i+1);
         }
-        if(maze_.status_celula_parede_leste(cord_linha,cord_coluna)){
+        if(maze_.status_celula_parede_leste(cord_coluna,cord_linha)){
             temp.push_back(i-1);
         }
         // Adicionar a tabela
@@ -91,7 +91,7 @@ void Solver::resolver(Maze & maze_){
                     break;
                 }
             }
-        }
+        }        
         if(possibilidades.size()>0){
             int indice_sorteado = std::rand()%possibilidades.size();
             // Aviciona a lista o índice
@@ -107,13 +107,13 @@ void Solver::resolver(Maze & maze_){
             posicao_atual = possibilidades[indice_sorteado];        
             // Modificar no labirinto o status das células envolvidas
             int cord_linha = (*(lista.end()-1) / t_coluna);
-            int cord_coluna = (*(lista.end()-1) - (cord_linha * t_coluna));
-            maze_.modificar_para_caminho(cord_linha,cord_coluna);
+            int cord_coluna = (*(lista.end()-1) - (cord_linha * t_coluna));                    
+            maze_.modificar_para_caminho(cord_coluna,cord_linha);            
         } else {        
             // Modificar no labirinto o status das células envolvidas
             int cord_linha = (*(lista.end()-1) / t_coluna);
             int cord_coluna = (*(lista.end()-1) - (cord_linha * t_coluna));
-            maze_.modificar_para_caminho_descartado(cord_linha,cord_coluna);
+            maze_.modificar_para_caminho_descartado(cord_coluna,cord_linha);
             // Terminar movimentação lógica
             lista.pop_back();
             posicao_atual = *(lista.end()-1);

@@ -12,14 +12,15 @@
 #include "../include/magos.h"
 #include "../include/builder.h"
 #include "../include/solver.h"
+#include "../include/render.h"
 
 /**
  * @brief Função para gerar labirinto
  * 
  */
 void Magos::building(void){
-    Builder builder_(n_linhas, n_colunas);
-    Render render_(n_linhas, n_colunas, p_width, p_height, 0);
+    Builder builder_(n_colunas, n_linhas);
+    Render render_(n_colunas, n_linhas, p_width, p_height, 0);
     // Game Loop Builder
     while(builder_.status_builder()){
         // Derrubar parede        
@@ -34,8 +35,8 @@ void Magos::building(void){
  * 
  */
 void Magos::solveing(void){
-    Solver solver_(n_linhas, n_colunas, maze_);
-    Render render_(n_linhas, n_colunas, p_width, p_height, 1);
+    Solver solver_(n_colunas, n_linhas, maze_);
+    Render render_(n_colunas, n_linhas, p_width, p_height, 1);
     // Game Loop Solver
     while(solver_.status_resolver()){
         // Se mover no labirinto
@@ -43,5 +44,4 @@ void Magos::solveing(void){
         // Renderizar imagem do labirinto
         render_.print(maze_);
     }
-
 }

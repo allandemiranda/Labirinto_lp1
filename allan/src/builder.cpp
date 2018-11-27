@@ -12,7 +12,9 @@
 #include <cstdlib>      // std::rand
 #include <vector>       // std::vector
 #include <algorithm>    // std::binary_search , std::sort
+#include <ctime>
 #include "../include/builder.h"
+#include "../include/maze.h"
 
 /**
  * @brief Construct a new Builder::Builder object
@@ -20,19 +22,18 @@
  * @param num_linhas Quantidade de Linhas que a matriz do labirinto tem
  * @param num_colunas Quantidade de Colunas que a martiz do labirinto tem
  */
-Builder::Builder(int num_linhas, int num_colunas){
+Builder::Builder(int num_colunas, int num_linhas){
     int contador = 0;
-    for(int i(0); i<num_linhas; ++i){
-        for(int j(0); j<num_colunas; ++j){
-            indices_restantes.push_back(contador);
+    for(int i(0); i<num_colunas; ++i){
+        for(int j(0); j<num_linhas; ++j){
+            indices_restantes.push_back(contador);            
             ++contador;
         }
     }
-    int sorteio = std::rand()%indices_restantes.size();
-    indices_selecionados.push_back(indices_restantes[sorteio]);
-    indices_restantes.erase(indices_restantes.begin()+sorteio);
-    tamanho_linha = num_linhas;
+    indices_selecionados.push_back(0);
+    indices_restantes.erase(indices_restantes.begin());    
     tamanho_coluna = num_colunas;
+    tamanho_linha = num_linhas;
 }
 
 /**
@@ -54,16 +55,25 @@ bool Builder::status_builder(void){
  * @param maze_ Class do labirinto
  */
 void Builder::derrubar_parede(Maze &maze_){
+    std::srand(std::time(0)); //use current time as seed for random generator
     while(status_builder()){    
         // Selecionar um índice do conjunto do caminho    
-        int sorteio = std::rand()%indices_selecionados.size();
+        int sorteio = std::rand()%indices_selecionados.size();        
         // Mostrar possibilidades para criar novo caminho
         std::vector <int> possiveis;
         if((indices_selecionados[sorteio]+1) < (tamanho_linha*tamanho_coluna)){
-            possiveis.push_back(indices_selecionados[sorteio]+1);
+            int linha_sorteado = indices_selecionados[sorteio]/tamanho_coluna;
+            int linha_sorteado_um = (indices_selecionados[sorteio]+1)/tamanho_coluna;
+            if(linha_sorteado == linha_sorteado_um){
+                possiveis.push_back(indices_selecionados[sorteio]+1);
+            }
         }
         if((indices_selecionados[sorteio]-1) >= 0){
-            possiveis.push_back(indices_selecionados[sorteio]-1);
+            int linha_sorteado = indices_selecionados[sorteio]/tamanho_coluna;
+            int linha_sorteado_um = (indices_selecionados[sorteio]-1)/tamanho_coluna;
+            if(linha_sorteado == linha_sorteado_um){
+                possiveis.push_back(indices_selecionados[sorteio]-1);
+            }            
         }
         if((indices_selecionados[sorteio]+tamanho_coluna) < (tamanho_linha*tamanho_coluna)){
             possiveis.push_back(indices_selecionados[sorteio]+tamanho_coluna);
@@ -79,28 +89,46 @@ void Builder::derrubar_parede(Maze &maze_){
         // Se o indice não tiver possivilidade, sortear um novo
         if(possiveis.size()==0){
             continue;
-        }
+        }     
         // Sortear possibilidade
         int sorteio_possivel = std::rand()%possiveis.size();
+        bool flag = false;
+        for(int i : possiveis){
+            if(i == possiveis[sorteio_possivel]){
+                flag = true;
+                break;
+            }
+        }
+        if(!flag){
+            continue;
+        }
         // Verificar coordenada que os une (em relação ao índice sorteio)
         int cord_linha = indices_selecionados[sorteio]/tamanho_coluna;
         int cord_coluna = indices_selecionados[sorteio] - (cord_linha*tamanho_coluna);
         // Derruba a parede correta
         // Norte
         if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-tamanho_coluna)){
-            maze_.derrubar_parede_norte(cord_linha, cord_coluna);
+            maze_.derrubar_parede_norte(cord_coluna, cord_linha);
+            maze_.derrubar_parede_sul(cord_coluna, cord_linha-1);
+            //std::cout << "NORTE" << std::endl;
         } else {
             // Sul
             if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]+tamanho_coluna)){
-                maze_.derrubar_parede_sul(cord_linha, cord_coluna);
+                maze_.derrubar_parede_sul(cord_coluna, cord_linha);
+                maze_.derrubar_parede_norte(cord_coluna, cord_linha+1);
+                //std::cout << "SUL" << std::endl;
             } else {
                 // Leste
                 if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]+1)){
-                    maze_.derrubar_parede_leste(cord_linha, cord_coluna);
+                    maze_.derrubar_parede_leste(cord_coluna, cord_linha);
+                    maze_.derrubar_parede_oeste(cord_coluna+1, cord_linha);
+                    //std::cout << "LESTE" << std::endl;
                 } else {
                     // Oeste
                     if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-1)){
-                        maze_.derrubar_parede_oeste(cord_linha, cord_coluna);
+                        maze_.derrubar_parede_oeste(cord_coluna, cord_linha);
+                        maze_.derrubar_parede_leste(cord_coluna-1, cord_linha);
+                        //std::cout << "OESTE" << std::endl;
                     } else {
                         // RETORNAR ERRO AO DERRUBAR PAREDE (DEBUG)
                     }
@@ -116,6 +144,25 @@ void Builder::derrubar_parede(Maze &maze_){
                 break;
             }
         }
+        // std::cout << "Sorteou: " << indices_selecionados[sorteio] << "->" << sorteio << std::endl;
+        // std::cout << "Possiveis com ele: ";
+        // for(int i : possiveis){
+        //     std::cout << i << " ";
+        // }std::cout << std::endl;
+        // std::cout << "Escolheu: " << possiveis[sorteio_possivel] << std::endl;
+        // std::cout << "Derrubar parede entre " << indices_selecionados[sorteio] << " | "
+        // << possiveis[sorteio_possivel] << std::endl;
+        // std::cout << "Paredes " << indices_selecionados[sorteio] << " : ";
+        // for(int i : maze_.m_maze[cord_coluna][cord_linha].paredes){
+        //     std::cout << i << " ";
+        // }std::cout << std::endl;        
+
+        //     for(int i : indices_restantes){
+        //         std::cout << i << " ";
+        //     }std::cout << std::endl;
+        //     for(int i : indices_selecionados){
+        //         std::cout << i << " ";
+        //     }std::cout << std::endl;std::cout << std::endl;
         break;
     }
 }

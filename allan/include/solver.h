@@ -25,9 +25,9 @@ private:
     /**
      * @brief Controles de organização
      * 
-     */
-    int t_linha;        //! Quantidade de linhas
+     */    
     int t_coluna;       //! Quantidade de colunas  
+    int t_linha;        //! Quantidade de linhas
     int posicao_atual;  //! Indíce atual que se encontra a procura
     int entrada = 0;    //! Posição de entrada do labirinto
     int saida;          //! Posiçao de saída do labirinto

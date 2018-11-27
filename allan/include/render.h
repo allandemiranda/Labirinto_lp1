@@ -21,9 +21,9 @@
  */
 class Render
 {
-private:
-    int n_linhas;       //! Número de linhas no labirinto
+private:    
     int n_colunas;      //! Número de colunas no labirinto
+    int n_linhas;       //! Número de linhas no labirinto
     int p_width;        //! Width da imagem
     int p_height;       //! Height da iamgem
     int status;         //! Status de impressão building = 0, solveing = 1
