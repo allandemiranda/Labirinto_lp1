@@ -1,37 +1,49 @@
-#include "../include/magos.h"
+/**
+ * @file magos.cpp
+ * @author Allan de Miranda - Josué Cláudio
+ * @brief Funções da Class Magos
+ * @version 0.1
+ * @date 2018-11-26
+ * 
+ * @copyright Copyright (c) 2018
+ * 
+ */
 
-bool magos::Magos::initializer( int argc, char **argv )
-{
-    int argv2[argc];
-    for( unsigned short i(0); i < argc; ++i )
-    {
-        argv2[i] = std::atoi(argv[i]);
-    }
-    if( argc < 5 or argc > 5 )
-    {
-        std::cerr<< "Erro: número incorreto de argumento \n" << "São 4 argumentos, ex: [ linhas, colunas, largura, altura ]" << '\n';
-        return false; 
-    }
-    else if( argv2[1] < 1 or argv2[2] < 1 or argv2[3] < 1 or argv2[4] < 1 )
-    {
-        std::cerr<< "Erro: argumento fora da faixa permitida \n" << "Apenas argumentos maiores que zero são válidos"<< '\n';
-        return false; 
-    }
-    else if( argv2[1] == 1 and argv2[2] == 1 )
-    {
-        std::cerr<< "Erro: Argumentos 1 e 2 não podem ter 1 como mesmo valor\n";
-        return false;
-    }
-    else
-    {
-        // this->m_maze.set_rows(argv2[1]);
-        // this->m_maze.set_columns(argv2[2]);
-        // this->m_maze.set_width(argv2[3]);
-        // this->m_maze.set_height(argv2[4]);
-        return true;
+#include "../include/magos.h"
+#include "../include/builder.h"
+#include "../include/solver.h"
+#include "../include/render.h"
+
+/**
+ * @brief Função para gerar labirinto
+ * 
+ */
+void Magos::building(void){
+    Builder builder_(n_colunas, n_linhas);
+    Render render_(n_colunas, n_linhas, p_width, p_height, 0);
+    render_.print(maze_);
+    // Game Loop Builder
+    while(builder_.status_builder()){
+        // Derrubar parede        
+        builder_.derrubar_parede(maze_);
+        // Renderizar imagem do labirinto
+        render_.print(maze_);
     }
 }
 
-void magos::Magos::render(){
-    
+/**
+ * @brief Função apra resolver labirinto
+ * 
+ */
+void Magos::solveing(void){
+    Solver solver_(n_colunas, n_linhas, maze_);
+    Render render_(n_colunas, n_linhas, p_width, p_height, 1);
+    render_.print(maze_);
+    // Game Loop Solver
+    while(solver_.status_resolver()){
+        // Se mover no labirinto
+        solver_.resolver(maze_);
+        // Renderizar imagem do labirinto
+        render_.print(maze_);
+    }
 }

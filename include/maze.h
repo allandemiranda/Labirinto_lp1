@@ -34,9 +34,9 @@ public:
     /**
      * @brief Dados lógico do labirinto
      * 
-     */
-    int m_linhas;                               //! Quantidade de linhas
-    int m_colunas;                              //! Quantidade de colunas        
+     */    
+    int m_colunas;                              //! Quantidade de colunas 
+    int m_linhas;                               //! Quantidade de linhas       
     std::vector <std::vector <celula>> m_maze;  //! Matriz que guarda as células
     celula status_celula(int, int);             //! Status da célula
 

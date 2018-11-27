@@ -1,69 +1,50 @@
+/**
+ * @file magos.h
+ * @author Allan de Miranda - Josué Cláudio
+ * @brief Class principal do jogo
+ * @version 0.1
+ * @date 2018-11-26
+ * 
+ * @copyright Copyright (c) 2018
+ * 
+ */
 #ifndef MAGOS_H
 #define MAGOS_H
 
-#include <iostream>
-#include <memory>  // unique_ptr<>
-#include <cstring> // memset, memcpy
-#include <vector>
-#include <random>
-#include <list> // list
-#include <set> // set
-#include "../include/canvas.h"
 #include "../include/maze.h"
 #include "../include/render.h"
 
-namespace magos {
+/**
+ * @brief Class Magos
+ * 
+ */
+class Magos
+{
+private:    
+    int n_colunas;      //! Número de colunas no labirinto
+    int n_linhas;       //! Número de linhas no labirinto
+    int p_width;        //! Width da imagem
+    int p_height;       //! Height da iamgem
+    Maze maze_;         //! Class com informações das células do labirinto
+public:
     /**
-     * @brief classe principal que vai chamar todas as outras.
+     * @brief Construct a new Magos object
      * 
+     * @param linha Número de linhas no labirinto
+     * @param coluna Número de colunas no labirinto
+     * @param p_w Width da imagem
+     * @param p_h Height da iamgem
      */
-    class Magos
-    {
-        public:
-            //=== Alias
-            using set_list_path = std::list<std::set<Maze::celula> >; /// apelido para a lista de dicionario de celulas do labirinto
-        public:
-            enum Game_state { START, BUILD, SOLVE, ERRO, DONE };
-            //=== Special members
-            Magos( /*algo*/ )
-            { /*algo*/ }
+    Magos(int coluna, int linha, int p_w, int p_h) : 
+        maze_(coluna, linha){                   
+            n_colunas = coluna;
+            n_linhas = linha;
+            p_width = p_w;
+            p_height = p_h;
+        };    
+    
+    void building(void);    
+    void solveing(void);    
+};
 
-            /// Destructor.
-            virtual ~Magos( void )
-            {
-                // TODO 
-            }
-
-            //=== Special members
-            /// Copy constructor.
-            Magos( const Magos & );
-            /// Assignment operator.
-            Magos & operator=( const Magos & );
-
-            //=== Members
-            bool initializer( int argc, char **argv ); /// configura todos os parâmetros de objetos instanciados no construtor. Este método deve validar os argumentos de entrada.
-            void update(); /// Este método deve avançar a simulação atual (construir ou resolver) uma única etapa. E nele estão os estados = start, build, solve, erro, done;
-            void render(); /// este é o método que envia a imagem atual do labirinto para um arquivo de imagem de saída.
-            bool done(); /// este método retorna true somente se a simulação terminar. Isso pode acontecer quando os processos de construção e resolução são concluídos ou se ocorrer um erro durante a execução.
-            
-            //=== Variáveis necessárias
-            bool gameover; /// status que identifica se é o fim do gameloop
-            Maze m_maze;
-        private:
-            //=== Members
-            void builder(); /// usado na construção do labirinto
-            void solver(); /// usado na solução do labirinto
-            void knockdown_wall(); /// derrubar uma parede da respectiva célula
-            /// OBS: outros métodos auxiliares serão acrescentados
-
-            //=== Variáveis necessárias
-            /// instancias de cada um objeto das classes Canvas, Maze, Render
-            // canvas::Canvas m_canvas; 
-            // Maze m_maze;
-            render::Render m_render;
-            /// lista de hashtable que será usado para criar o caminho de solução do labirinto
-            set_list_path solucao_labirinto;
-    };
-} // namespace
-
-#endif // MAGOS_H
+#endif
