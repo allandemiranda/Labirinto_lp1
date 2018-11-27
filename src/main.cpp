@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
     Magos magos_(atoi(argv[2]), atoi(argv[1]), atoi(argv[3]), atoi(argv[4])); 
     std::cout << "Building..." << std::endl;  
     magos_.building();
-    std::cout << "Solveing..." << std::endl;     
+    std::cout << "Solving..." << std::endl;     
     magos_.solveing();
     std::cout << "End" << std::endl;
     // Fim do jogo
