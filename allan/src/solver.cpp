@@ -13,6 +13,8 @@
 #include <cstdlib>  // std::rand
 #include "../include/solver.h"
 
+#include <iostream> // Para DEBUG
+
 /**
  * @brief Construct a new Solver:: Solver object
  * 
@@ -35,26 +37,32 @@ Solver::Solver(int num_coluna, int num_linha, Maze & maze_){
      * @brief Mapear e preencher tabela de solução
      * 
      */
-    for(int i(0); i<(num_linha*num_coluna); ++i){
+    for(int i(0); i<(num_linha*num_coluna); ++i){        
         std::vector <int> temp;
         // Calcular coordenada do índice i
         int cord_linha = (i / num_coluna);
         int cord_coluna = (i - (cord_linha * num_coluna));
         // Verificar possibilidades
-        if(maze_.status_celula_parede_norte(cord_coluna,cord_linha)){
+        if(!maze_.status_celula_parede_norte(cord_coluna,cord_linha)){            
             temp.push_back(i-num_coluna);
         }
-        if(maze_.status_celula_parede_sul(cord_coluna,cord_linha)){
+        if(!maze_.status_celula_parede_sul(cord_coluna,cord_linha)){
             temp.push_back(i+num_coluna);
         }
-        if(maze_.status_celula_parede_leste(cord_coluna,cord_linha)){
+        if(!maze_.status_celula_parede_leste(cord_coluna,cord_linha)){
             temp.push_back(i+1);
         }
-        if(maze_.status_celula_parede_leste(cord_coluna,cord_linha)){
+        if(!maze_.status_celula_parede_oeste(cord_coluna,cord_linha)){
             temp.push_back(i-1);
         }
         // Adicionar a tabela
         tabela.push_back(temp);
+
+        std::cout << "Índice: " << i << " -> ";
+        for(int j : temp){
+            std::cout << j << " ";
+        }
+        std::cout << std::endl;
     }
 }
 

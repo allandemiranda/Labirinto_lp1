@@ -16,6 +16,8 @@
 #include "../include/builder.h"
 #include "../include/maze.h"
 
+// #include <iostream> // Para o DEBUG
+
 /**
  * @brief Construct a new Builder::Builder object
  * 
@@ -110,27 +112,27 @@ void Builder::derrubar_parede(Maze &maze_){
         if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-tamanho_coluna)){
             maze_.derrubar_parede_norte(cord_coluna, cord_linha);
             maze_.derrubar_parede_sul(cord_coluna, cord_linha-1);
-            //std::cout << "NORTE" << std::endl;
+            //std::cout << "NORTE" << std::endl; // DEBUG
         } else {
             // Sul
             if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]+tamanho_coluna)){
                 maze_.derrubar_parede_sul(cord_coluna, cord_linha);
                 maze_.derrubar_parede_norte(cord_coluna, cord_linha+1);
-                //std::cout << "SUL" << std::endl;
+                // std::cout << "SUL" << std::endl; // DEBUG
             } else {
                 // Leste
                 if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]+1)){
                     maze_.derrubar_parede_leste(cord_coluna, cord_linha);
                     maze_.derrubar_parede_oeste(cord_coluna+1, cord_linha);
-                    //std::cout << "LESTE" << std::endl;
+                    // std::cout << "LESTE" << std::endl; // DEBUG
                 } else {
                     // Oeste
                     if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-1)){
                         maze_.derrubar_parede_oeste(cord_coluna, cord_linha);
                         maze_.derrubar_parede_leste(cord_coluna-1, cord_linha);
-                        //std::cout << "OESTE" << std::endl;
+                        // std::cout << "OESTE" << std::endl;
                     } else {
-                        // RETORNAR ERRO AO DERRUBAR PAREDE (DEBUG)
+                        // std::cout << "ERRO FATAL" << std::endl; // DEBUG
                     }
                 }
             }
@@ -144,25 +146,28 @@ void Builder::derrubar_parede(Maze &maze_){
                 break;
             }
         }
-        // std::cout << "Sorteou: " << indices_selecionados[sorteio] << "->" << sorteio << std::endl;
-        // std::cout << "Possiveis com ele: ";
-        // for(int i : possiveis){
-        //     std::cout << i << " ";
-        // }std::cout << std::endl;
-        // std::cout << "Escolheu: " << possiveis[sorteio_possivel] << std::endl;
-        // std::cout << "Derrubar parede entre " << indices_selecionados[sorteio] << " | "
-        // << possiveis[sorteio_possivel] << std::endl;
-        // std::cout << "Paredes " << indices_selecionados[sorteio] << " : ";
-        // for(int i : maze_.m_maze[cord_coluna][cord_linha].paredes){
-        //     std::cout << i << " ";
-        // }std::cout << std::endl;        
 
-        //     for(int i : indices_restantes){
-        //         std::cout << i << " ";
-        //     }std::cout << std::endl;
-        //     for(int i : indices_selecionados){
-        //         std::cout << i << " ";
-        //     }std::cout << std::endl;std::cout << std::endl;
+        /** // DEBUG ÁREA
+        std::cout << "Sorteou: " << indices_selecionados[sorteio] << "->" << sorteio << std::endl;
+        std::cout << "Possiveis com ele: ";
+        for(int i : possiveis){
+            std::cout << i << " ";
+        }std::cout << std::endl;
+        std::cout << "Escolheu: " << possiveis[sorteio_possivel] << std::endl;
+        std::cout << "Derrubar parede entre " << indices_selecionados[sorteio] << " | "
+        << possiveis[sorteio_possivel] << std::endl;
+        std::cout << "Paredes " << indices_selecionados[sorteio] << " : ";
+        for(int i : maze_.m_maze[cord_coluna][cord_linha].paredes){
+            std::cout << i << " ";
+        }std::cout << std::endl;  
+        for(int i : indices_restantes){
+            std::cout << i << " ";
+        }std::cout << std::endl;
+        for(int i : indices_selecionados){
+            std::cout << i << " ";
+        }std::cout << std::endl;std::cout << std::endl;
+        */
+
         break;
     }
 }

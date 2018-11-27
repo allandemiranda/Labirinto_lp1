@@ -40,10 +40,7 @@ public:
             n_colunas = coluna;
             n_linhas = linha;
             p_width = p_w;
-            p_height = p_h;            
-            // Renderizar imagem do labirinto  
-            Render render_(n_colunas, n_linhas, p_width, p_height, 0);
-            render_.print(maze_);
+            p_height = p_h;
         };    
     
     void building(void);    

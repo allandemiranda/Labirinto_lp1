@@ -21,6 +21,7 @@
 void Magos::building(void){
     Builder builder_(n_colunas, n_linhas);
     Render render_(n_colunas, n_linhas, p_width, p_height, 0);
+    render_.print(maze_);
     // Game Loop Builder
     while(builder_.status_builder()){
         // Derrubar parede        
@@ -37,6 +38,7 @@ void Magos::building(void){
 void Magos::solveing(void){
     Solver solver_(n_colunas, n_linhas, maze_);
     Render render_(n_colunas, n_linhas, p_width, p_height, 1);
+    render_.print(maze_);
     // Game Loop Solver
     while(solver_.status_resolver()){
         // Se mover no labirinto
