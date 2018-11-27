@@ -13,7 +13,7 @@
 #include <cstdlib>  // std::rand
 #include "../include/solver.h"
 
-#include <iostream> // Para DEBUG
+// #include <iostream> // Para DEBUG
 
 /**
  * @brief Construct a new Solver:: Solver object
@@ -57,12 +57,14 @@ Solver::Solver(int num_coluna, int num_linha, Maze & maze_){
         }
         // Adicionar a tabela
         tabela.push_back(temp);
-
+        
+        /** PAINEL DEBUG
         std::cout << "Índice: " << i << " -> ";
         for(int j : temp){
             std::cout << j << " ";
         }
         std::cout << std::endl;
+        */
     }
 }
 

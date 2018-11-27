@@ -66,6 +66,12 @@ void Render::print(Maze maze_){
                 canvas_.vline(orig_x, orig_y, altura_p, BLACK);
             }
             //Verificando status da célula e desenhando se não for livre
+            /// -> Divida o quadrado em sub quadrados
+            /// -> Mova a origem para o canto esquerdo superior de um subquadrado
+            /// -> Verifique se existe uma parede, se não existir continue a verificação, se existir pule para o próximo subquadrado
+            /// -> Verifique se ele é cainho, se sim, preencha de vermelho e pule para o próximo subquadrado
+            /// -> Verifique se ele é caminho desrcartado, se sim, preencha de amarelo e pule para o próximo subquadrado
+            /// -> Complete essa operação para os 4 lados do quadrado
             if(maze_.status_celula_entrada(j,i)){
                 canvas_.box( orig_x+5, orig_y+5, largura_p-40, altura_p-40, DEEP_SKY_BLUE );
             }
