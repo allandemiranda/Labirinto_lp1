@@ -12,6 +12,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "../include/stb_image_write.h"
 
+//#include <omp.h> // -fopenmp
 #include <string> // std::to_string
 #include "../include/render.h"
 
@@ -43,16 +44,14 @@ void Render::print(Maze maze_){
     Canvas canvas_(p_width, p_height);
     // Pintar o fundo de branco
     canvas_.clear( WHITE );
-    // Determinar tamanho espacial da célula 
-    int offWidth = (p_width * 0.02);
-    int offHeight = (p_height * 0.02);
-    int largura_p = p_width/(n_colunas) - offWidth;    
-    int altura_p = p_height/(n_linhas) - offHeight;
+    // Determinar tamanho espacial da célula     
+    int largura_p = ((p_width)/(n_colunas+2));    
+    int altura_p = ((p_height)/(n_linhas+2));
     // Verificar cada célula e desenhar    
-    for(size_t i(0); i<n_linhas; ++i){
-        for(size_t j(0); j<n_colunas; ++j){
+    for(size_t i(0); i<n_linhas; ++i){        
+        for(size_t j = 0; j<n_colunas; ++j){
             // Verificar posição inicial do desenho
-            coord_type orig_x{j*largura_p+offWidth}, orig_y{i*altura_p+offHeight};
+            coord_type orig_x{(j*largura_p)+largura_p}, orig_y{(i*altura_p)+altura_p};
             canvas_.thickness( 3 );
             //Verificando paredes e desenhando se possivel            
             if(maze_.status_celula_parede_norte(j,i)){
