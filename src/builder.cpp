@@ -59,9 +59,9 @@ bool Builder::status_builder(void){
 void Builder::derrubar_parede(Maze &maze_){
     std::srand(std::time(0)); //use current time as seed for random generator
     while(status_builder()){    
-        // Selecionar um índice do conjunto do caminho    
+        /// Selecionar um índice do conjunto do caminho    
         int sorteio = std::rand()%indices_selecionados.size();        
-        // Mostrar possibilidades para criar novo caminho
+        /// Mostrar possibilidades para criar novo caminho
         std::vector <int> possiveis;
         if((indices_selecionados[sorteio]+1) < (tamanho_linha*tamanho_coluna)){
             int linha_sorteado = indices_selecionados[sorteio]/tamanho_coluna;
@@ -88,11 +88,11 @@ void Builder::derrubar_parede(Maze &maze_){
                 possiveis.erase(possiveis.begin()+i);
             }
         }
-        // Se o indice não tiver possivilidade, sortear um novo
+        /// Se o indice não tiver possibilidade, sortear um novo
         if(possiveis.size()==0){
             continue;
         }     
-        // Sortear possibilidade
+        /// Sortear possibilidade
         int sorteio_possivel = std::rand()%possiveis.size();
         bool flag = false;
         for(int i : possiveis){
@@ -104,29 +104,29 @@ void Builder::derrubar_parede(Maze &maze_){
         if(!flag){
             continue;
         }
-        // Verificar coordenada que os une (em relação ao índice sorteio)
+        /// Verificar coordenada que os une (em relação ao índice sorteio)
         int cord_linha = indices_selecionados[sorteio]/tamanho_coluna;
         int cord_coluna = indices_selecionados[sorteio] - (cord_linha*tamanho_coluna);
-        // Derruba a parede correta
-        // Norte
+        /// Derruba a parede correta
+        /// Norte
         if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-tamanho_coluna)){
             maze_.derrubar_parede_norte(cord_coluna, cord_linha);
             maze_.derrubar_parede_sul(cord_coluna, cord_linha-1);
             //std::cout << "NORTE" << std::endl; // DEBUG
         } else {
-            // Sul
+            /// Sul
             if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]+tamanho_coluna)){
                 maze_.derrubar_parede_sul(cord_coluna, cord_linha);
                 maze_.derrubar_parede_norte(cord_coluna, cord_linha+1);
                 // std::cout << "SUL" << std::endl; // DEBUG
             } else {
-                // Leste
+                /// Leste
                 if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]+1)){
                     maze_.derrubar_parede_leste(cord_coluna, cord_linha);
                     maze_.derrubar_parede_oeste(cord_coluna+1, cord_linha);
                     // std::cout << "LESTE" << std::endl; // DEBUG
                 } else {
-                    // Oeste
+                    /// Oeste
                     if(possiveis[sorteio_possivel] == (indices_selecionados[sorteio]-1)){
                         maze_.derrubar_parede_oeste(cord_coluna, cord_linha);
                         maze_.derrubar_parede_leste(cord_coluna-1, cord_linha);
@@ -137,8 +137,8 @@ void Builder::derrubar_parede(Maze &maze_){
                 }
             }
         }
-        // Migrar o índice para um já selecionado
-        for(int i(0); i<indices_restantes.size(); ++i){
+        /// Migrar o índice para um já selecionado
+        for(auto i(0u); i<indices_restantes.size(); ++i){
             if(possiveis[sorteio_possivel] == indices_restantes[i]){
                 indices_restantes.erase(indices_restantes.begin()+i);
                 indices_selecionados.push_back(possiveis[sorteio_possivel]);
