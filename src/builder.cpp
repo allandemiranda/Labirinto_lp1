@@ -9,9 +9,9 @@
  * 
  */
 
-#include <cstdlib>      // std::rand
 #include <vector>       // std::vector
 #include <algorithm>    // std::binary_search , std::sort
+#include <cstdlib>     
 #include <ctime>
 #include "../include/builder.h"
 #include "../include/maze.h"
@@ -57,10 +57,12 @@ bool Builder::status_builder(void){
  * @param maze_ Class do labirinto
  */
 void Builder::derrubar_parede(Maze &maze_){
-    std::srand(std::time(0)); //use current time as seed for random generator
+    std::srand(std::time(NULL)); //use current time as seed for random generator
+    
     while(status_builder()){    
-        /// Selecionar um índice do conjunto do caminho    
-        int sorteio = std::rand()%indices_selecionados.size();        
+        /// Selecionar um índice do conjunto do caminho   
+        int sorteio = std::rand()%indices_selecionados.size();   
+           
         /// Mostrar possibilidades para criar novo caminho
         std::vector <int> possiveis;
         if((indices_selecionados[sorteio]+1) < (tamanho_linha*tamanho_coluna)){
@@ -92,8 +94,9 @@ void Builder::derrubar_parede(Maze &maze_){
         if(possiveis.size()==0){
             continue;
         }     
-        /// Sortear possibilidade
+        /// Sortear possibilidade 
         int sorteio_possivel = std::rand()%possiveis.size();
+        
         bool flag = false;
         for(int i : possiveis){
             if(i == possiveis[sorteio_possivel]){
@@ -131,8 +134,6 @@ void Builder::derrubar_parede(Maze &maze_){
                         maze_.derrubar_parede_oeste(cord_coluna, cord_linha);
                         maze_.derrubar_parede_leste(cord_coluna-1, cord_linha);
                         // std::cout << "OESTE" << std::endl;
-                    } else {
-                        // std::cout << "ERRO FATAL" << std::endl; // DEBUG
                     }
                 }
             }

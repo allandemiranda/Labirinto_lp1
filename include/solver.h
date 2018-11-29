@@ -12,8 +12,7 @@
 #ifndef SOLVER_H
 #define SOLVER_H
 
-#include <vector> // std::vector
-#include "../include/maze.h" // VERIFICAR SE ISSO ENTRA AQUI
+#include "../include/maze.h"
 
 /**
  * @brief Class Solver rosolvendo o labirinto

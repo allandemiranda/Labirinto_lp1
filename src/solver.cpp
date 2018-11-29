@@ -10,7 +10,7 @@
  */
 
 #include <vector>   // std::vector
-#include <cstdlib>  // std::rand
+#include <random>
 #include "../include/solver.h"
 
 // #include <iostream> // Para DEBUG
@@ -87,10 +87,15 @@ bool Solver::status_resolver(void){
  * @param maze_ Class que contem dados do labirinto
  */
 void Solver::resolver(Maze & maze_){
+    std::random_device gen;
+    std::mt19937 rng(gen());
+
     if(status_resolver()){
         /// Movimentação lógica
         /// Verificar as possibilidades de seguir no labirinto
         std::vector <int> possibilidades;
+        std::uniform_int_distribution<int> distribution(0, possibilidades.size() );
+
         for(auto i(0u); i<tabela[posicao_atual].size(); ++i){
             possibilidades.push_back(tabela[posicao_atual][i]);
         }
@@ -103,7 +108,8 @@ void Solver::resolver(Maze & maze_){
             }
         }        
         if(possibilidades.size()>0){
-            int indice_sorteado = std::rand()%possibilidades.size();
+            // int indice_sorteado = std::rand()%possibilidades.size();
+            int indice_sorteado( distribution(rng) );
             /// Adiciona a lista ao índice
             lista.push_back(possibilidades[indice_sorteado]);
             /// Exclui o índice da tabela

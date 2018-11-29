@@ -12,7 +12,6 @@
 #define MAGOS_H
 
 #include "../include/maze.h"
-#include "../include/render.h"
 
 /**
  * @brief Class Magos
@@ -44,7 +43,7 @@ public:
         };    
     
     void building(void);    
-    void solveing(void);    
+    void solving(void);    
 };
 
 #endif

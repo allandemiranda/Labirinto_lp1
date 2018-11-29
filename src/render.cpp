@@ -52,7 +52,7 @@ void Render::print(Maze maze_){
         for(auto j(0); j<n_colunas; ++j){
             /// Verificar posição inicial do desenho
             coord_type orig_x{ (size_t)( (j*largura_p)+largura_p ) }, orig_y{ (size_t) ( (i*altura_p)+altura_p ) };
-            canvas_.thickness( 3 );
+            canvas_.thickness( 2 );
             /// Verificando paredes e desenhando se possivel            
             if(maze_.status_celula_parede_norte(j,i)){
                 canvas_.hline(orig_x, orig_y, largura_p, BLACK);

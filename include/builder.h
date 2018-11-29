@@ -12,7 +12,6 @@
 #ifndef BUILDER_H
 #define BUILDER_H
 
-#include <vector> // std::vector	
 #include "../include/maze.h"
 
 /**

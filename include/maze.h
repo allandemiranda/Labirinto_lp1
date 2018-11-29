@@ -12,7 +12,7 @@
 #ifndef MAZE_H
 #define MAZE_H
 
-#include <vector> // std::vector
+#include <vector>
 
 /**
  * @brief Class Maze do Labirinto contendo o status do labirinto

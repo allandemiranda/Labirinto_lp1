@@ -42,7 +42,7 @@ int main(int argc, char const *argv[])
     std::cout << "Building..." << std::endl;  
     magos_.building();
     std::cout << "Solving..." << std::endl;     
-    magos_.solveing();
+    magos_.solving();
     std::cout << "End" << std::endl;
     /// Fim do jogo
     return 0;

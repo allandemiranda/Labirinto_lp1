@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2018
  * 
  */
-
+#include "../include/maze.h"
 #include "../include/magos.h"
 #include "../include/builder.h"
 #include "../include/solver.h"
@@ -35,7 +35,7 @@ void Magos::building(void){
  * @brief Função apra resolver labirinto
  * 
  */
-void Magos::solveing(void){
+void Magos::solving(void){
     Solver solver_(n_colunas, n_linhas, maze_);
     Render render_(n_colunas, n_linhas, p_width, p_height, 1);
     render_.print(maze_);
