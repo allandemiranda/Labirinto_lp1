@@ -25,7 +25,7 @@ Para instalar e executar o programa siga as instruções:
 
 1. Abra o terminal do seu sistema operacional e digite ...
 2. `git clone https://github.com/allandemiranda/MAGOS_LP1.git`
-3. `cd MAGOS_LP1`
+3. `cd Magos_LP1`
 4. `g++ -Wall -std=c++11 src/*.cpp -I include -o ./bin/magos.o`
 5. Exemplo de entrada`./bin/magos.o 10 10 1200 800`
 
